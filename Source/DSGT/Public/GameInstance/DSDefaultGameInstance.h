@@ -22,6 +22,12 @@ public:
 	// ==============================================================
 	// Save and Load Game:
 	// ==============================================================
+	virtual void Init() override;
+	
+	
+	// ==============================================================
+	// Save and Load Game:
+	// ==============================================================
 	UFUNCTION(BlueprintCallable, Category="Save and Load Game")
 	void SaveGameClientOptions();
 

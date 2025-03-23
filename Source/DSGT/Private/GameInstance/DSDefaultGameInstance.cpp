@@ -2,6 +2,17 @@
 #include "GameInstance/DSDefaultGameInstance.h"
 
 
+
+// ==============================================================
+// Life Cycle:
+// ==============================================================
+void UDSDefaultGameInstance::Init() {
+	Super::Init();
+
+	this->LoadGameClientOptions();
+	this->ApplyGameClientOptions();
+}
+
 // ==============================================================
 // Save and Load Game:
 // ==============================================================
