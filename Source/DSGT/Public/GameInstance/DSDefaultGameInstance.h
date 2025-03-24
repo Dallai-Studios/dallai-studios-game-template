@@ -33,7 +33,4 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Save and Load Game")
 	void LoadGameClientOptions();
-
-	UFUNCTION(BlueprintCallable, Category="Save and Load Game")
-	void ApplyGameClientOptions();
 };
