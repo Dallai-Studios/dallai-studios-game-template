@@ -12,11 +12,14 @@ class DSGT_API UDSDefaultGameInstance : public UGameInstance {
 
 public:
 	// ==============================================================
-	// Game Client Settings:
+	// Game Data Settings:
 	// ==============================================================
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Client Options")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
 	TObjectPtr<class UDSGameClientOptionsPDA> gameClientOptions;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
+	TObjectPtr<class USoundMix> mainSoundMixer;
+	
 	
 public:
 	// ==============================================================
@@ -33,4 +36,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Save and Load Game")
 	void LoadGameClientOptions();
+
+
+
+	// ==============================================================
+	// Helper Functions:
+	// ==============================================================
 };

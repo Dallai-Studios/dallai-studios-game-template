@@ -2,6 +2,7 @@
 #include "GameInstance/DSDefaultGameInstance.h"
 
 #include "Data/DSGameClientOptionsPDA.h"
+#include "Data/DSGameUserSettings.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Tools/DSDebugTools.h"
 
@@ -18,17 +19,28 @@ void UDSDefaultGameInstance::Init() {
 // Save and Load Game:
 // ==============================================================
 void UDSDefaultGameInstance::SaveGameClientOptions() {
-	UGameUserSettings* gameSettings = GEngine->GetGameUserSettings();
-
 	if (this->gameClientOptions == nullptr) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Game Client Options is null inside the game instance. Please create it and set on the game instance!"), FColor::Red);
 		return;
 	}
-
-	FIntPoint gameResolution = FIntPoint(this->gameClientOptions->resolutionX, this->gameClientOptions->resolutionY);
 	
+	UDSGameUserSettings* gameSettings = Cast<UDSGameUserSettings>(GEngine->GetGameUserSettings());
+	
+	// gameplaye settings
+	gameSettings->SetMouseSensitivity(this->gameClientOptions->mouseSensitivity);
+	gameSettings->SetInvertMouseAxisX(this->gameClientOptions->invertMouseX);
+	gameSettings->SetInvertMouseAxisY(this->gameClientOptions->invertMouseY);
+
+	// audio settings
+	gameSettings->SetMasterVolume(this->gameClientOptions->masterVolume);
+	gameSettings->SetMusicVolume(this->gameClientOptions->MusicVolume);
+	gameSettings->SetSFXVolume(this->gameClientOptions->SFXVolume);
+
+	// video settings
+	FIntPoint gameResolution = FIntPoint(this->gameClientOptions->resolutionX, this->gameClientOptions->resolutionY);
+
 	gameSettings->SetScreenResolution(gameResolution);
-	gameSettings->SetFullscreenMode(EWindowMode::Windowed);
+	gameSettings->SetFullscreenMode(EWindowMode::Type::Fullscreen);
 	gameSettings->SetVSyncEnabled(this->gameClientOptions->bEnableVSync);
 	gameSettings->SetShadowQuality(this->gameClientOptions->shadowQuality);
 	gameSettings->SetGlobalIlluminationQuality(this->gameClientOptions->globalIlluminationQuality);
@@ -40,6 +52,7 @@ void UDSDefaultGameInstance::SaveGameClientOptions() {
 
 	gameSettings->ApplyResolutionSettings(false);
 	gameSettings->ApplyNonResolutionSettings();
+	gameSettings->ApplySettings(false);
 	gameSettings->SaveSettings();
 
 	UDSDebugTools::ShowDebugMessage(TEXT("New settings applied and saved!"), FColor::Green);
