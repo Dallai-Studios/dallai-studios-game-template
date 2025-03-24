@@ -19,7 +19,15 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
 	TObjectPtr<class USoundMix> mainSoundMixer;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
+	TObjectPtr<class USoundClass> masterSoundClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
+	TObjectPtr<USoundClass> musicSoundClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
+	TObjectPtr<USoundClass> sfxSoundClass;
 	
 public:
 	// ==============================================================
@@ -27,19 +35,24 @@ public:
 	// ==============================================================
 	virtual void Init() override;
 	
+
 	
 	// ==============================================================
 	// Save and Load Game:
 	// ==============================================================
-	UFUNCTION(BlueprintCallable, Category="Save and Load Game")
+	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void SaveGameClientOptions();
 
-	UFUNCTION(BlueprintCallable, Category="Save and Load Game")
+	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void LoadGameClientOptions();
 
+	UFUNCTION(BlueprintCallable, Category="Game Client Options")
+	void UpdateClientSoundOptions();
 
 
+	
 	// ==============================================================
 	// Helper Functions:
 	// ==============================================================
+	EWindowMode::Type ConvertWindowMode(int windowModeValue);
 };

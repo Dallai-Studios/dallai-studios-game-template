@@ -4,5 +4,5 @@
 #include "Tools/DSDebugTools.h"
 
 void UDSDebugTools::ShowDebugMessage(FString message, FColor color) {
-	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Orange, message);
+	GEngine->AddOnScreenDebugMessage(-1, 10, color, message);
 }

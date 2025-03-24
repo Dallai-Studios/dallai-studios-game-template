@@ -18,10 +18,10 @@ public:
 	float mouseSensitivity = 1;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Gameplay Options")
-	bool invertMouseX = false;
+	bool bInvertMouseX = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Gameplay Options")
-	bool invertMouseY = false;
+	bool bInvertMouseY = false;
 	
 
 	
@@ -32,10 +32,10 @@ public:
 	float masterVolume = 1;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio Options")
-	float MusicVolume = 1;
+	float musicVolume = 1;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio Options")
-	float SFXVolume = 1;
+	float sfxVolume = 1;
 
 
 	
@@ -89,7 +89,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Aux Data")
 	TMap<FString, int> frameRateLimits;
 
+
+	
 public:
+	// ==============================================================
+	// Helper Functions:
+	// ==============================================================
 	UFUNCTION(BlueprintCallable, CallInEditor, Category="Game Client Options Functions")
 	void ResetClientOptions();
 };
