@@ -8,7 +8,6 @@ class UDSDefaultGameInstance;
 
 void UDSGameClientOptionsHud::ApplyGameSettings() {
 	if (UDSDefaultGameInstance* gameInstance = Cast<UDSDefaultGameInstance>(this->GetGameInstance())) {
-		gameInstance->ApplyGameClientOptions();
 		gameInstance->SaveGameClientOptions();
 	}
 }

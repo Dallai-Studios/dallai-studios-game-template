@@ -53,7 +53,6 @@ void UDSGameUserSettings::SetMusicVolume(float value) {
 	if (this->musicVolume < 0) this->musicVolume = 0;
 }
 
-
 float UDSGameUserSettings::GetSFXVolume() const {
 	return this->sfxVolume;
 }
@@ -62,9 +61,3 @@ void UDSGameUserSettings::SetSFXVolume(float value) {
 	this->sfxVolume = value;
 	if (this->sfxVolume < 0) this->sfxVolume = 0;
 }
-
-
-
-// ==============================================================
-// Video Getters and Setters:
-// ==============================================================

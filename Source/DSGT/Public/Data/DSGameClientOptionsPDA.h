@@ -87,7 +87,7 @@ public:
 	TArray<FIntPoint> resolutionPresets;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Aux Data")
-	TMap<FText, int> frameRateLimits;
+	TMap<FString, int> frameRateLimits;
 
 public:
 	UFUNCTION(BlueprintCallable, CallInEditor, Category="Game Client Options Functions")
