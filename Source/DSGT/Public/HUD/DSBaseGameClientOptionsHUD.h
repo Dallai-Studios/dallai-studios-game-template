@@ -15,6 +15,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Client Options")
 	TObjectPtr<class UDSGameClientOptionsPDA> gameClientOptions;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Configuration")
+	bool bUseDefaultButtonHoverFontTransformation = true;
+
 public:
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void ApplyGameClientOptionOnGameInstance();
