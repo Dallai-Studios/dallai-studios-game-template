@@ -15,12 +15,15 @@ void UDSGameClientOptionsPDA::ResetClientOptions() {
 	this->resolutionY = 1080;
 	this->windowMode = EWindowMode::Type::Fullscreen;
 	this->bEnableVSync = false;
-	this->frameRateLimit = 240;
-	this->shadowQuality = 1;
-	this->textureQuality = 1;
-	this->postProcessQuality = 1;
-	this->vfxQuality = 1;
-	this->grassQuality = 1;
-	this->globalIlluminationQuality = 1;
-	this->antiAliasingQuality = 1;
+	this->frameRateLimit = 0;
+	this->shadowQuality = 2;
+	this->textureQuality = 2;
+	this->postProcessQuality = 2;
+	this->vfxQuality = 2;
+	this->grassQuality = 2;
+	this->globalIlluminationQuality = 2;
+	this->antiAliasingQuality = 2;
+
+	this->resolutionSelectedIndex = 4;
+	this->framerateSelectedIndex = 0;
 }

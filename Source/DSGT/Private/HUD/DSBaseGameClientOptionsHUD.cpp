@@ -1,6 +1,5 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
-
 #include "HUD/DSBaseGameClientOptionsHUD.h"
 
 #include "Data/DSGameClientOptionsPDA.h"
@@ -44,11 +43,39 @@ void UDSBaseGameClientOptionsHUD::UpdateSfxVolume(float value) {
 }
 
 void UDSBaseGameClientOptionsHUD::ChangeWindowMode(EDSGameClientOptionsChangeType type) {
+	if (type == EDSGameClientOptionsChangeType::NEXT) {
+		this->gameClientOptions->windowMode++;
+		if (this->gameClientOptions->windowMode >= 2) this->gameClientOptions->windowMode = 0;
+		return;
+	}
+
+	this->gameClientOptions->windowMode--;
+	if (this->gameClientOptions->windowMode <= 0 ) this->gameClientOptions->windowMode = 2;
 	
 }
 
 void UDSBaseGameClientOptionsHUD::ChangeResolution(EDSGameClientOptionsChangeType type) {
-	
+	if (type == EDSGameClientOptionsChangeType::NEXT) {
+		this->gameClientOptions->resolutionSelectedIndex++;
+		
+		if (this->gameClientOptions->resolutionSelectedIndex > this->gameClientOptions->resolutionPresets.Num() - 1) this->gameClientOptions->resolutionSelectedIndex = 0;
+
+		auto resolution = this->gameClientOptions->resolutionPresets[this->gameClientOptions->resolutionSelectedIndex];
+
+		this->gameClientOptions->resolutionX = resolution.X;
+		this->gameClientOptions->resolutionY = resolution.Y;
+
+		return;
+	}
+
+	this->gameClientOptions->resolutionSelectedIndex--;
+
+	if (this->gameClientOptions->resolutionSelectedIndex < 0) this->gameClientOptions->resolutionSelectedIndex = this->gameClientOptions->resolutionPresets.Num() - 1;
+
+	auto resolution = this->gameClientOptions->resolutionPresets[this->gameClientOptions->resolutionSelectedIndex];
+
+	this->gameClientOptions->resolutionX = resolution.X;
+	this->gameClientOptions->resolutionY = resolution.Y;
 }
 
 void UDSBaseGameClientOptionsHUD::ToggleVsync(bool value) {
@@ -57,11 +84,22 @@ void UDSBaseGameClientOptionsHUD::ToggleVsync(bool value) {
 
 void UDSBaseGameClientOptionsHUD::ChangeFramerate(EDSGameClientOptionsChangeType type) {
 	if (type == EDSGameClientOptionsChangeType::NEXT) {
+		this->gameClientOptions->framerateSelectedIndex++;
 
+		if (this->gameClientOptions->framerateSelectedIndex > this->gameClientOptions->frameRateLimits.Num() - 1) this->gameClientOptions->framerateSelectedIndex = 0;
+
+		int framerate = this->gameClientOptions->frameRateLimits[this->gameClientOptions->framerateSelectedIndex];
+		this->gameClientOptions->frameRateLimit = framerate;
+		
 		return;
 	}
 
-	
+	this->gameClientOptions->framerateSelectedIndex--;
+
+	if (this->gameClientOptions->framerateSelectedIndex < 0) this->gameClientOptions->framerateSelectedIndex = this->gameClientOptions->frameRateLimits.Num() - 1;
+
+	int framerate = this->gameClientOptions->frameRateLimits[this->gameClientOptions->framerateSelectedIndex];
+	this->gameClientOptions->frameRateLimit = framerate;
 }
 
 void UDSBaseGameClientOptionsHUD::ChangeShadowQuality(EDSGameClientOptionsChangeType type) {

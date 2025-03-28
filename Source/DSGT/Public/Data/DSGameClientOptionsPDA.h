@@ -87,7 +87,13 @@ public:
 	TArray<FIntPoint> resolutionPresets;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Aux Data")
-	TMap<FString, int> frameRateLimits;
+	TArray<int> frameRateLimits;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Aux Data")
+	int resolutionSelectedIndex = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Aux Data")
+	int framerateSelectedIndex = 0;
 
 
 	
