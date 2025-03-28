@@ -6,5 +6,5 @@
 UENUM(Blueprintable, BlueprintType)
 enum class EDSGameClientOptionsChangeType : uint8 {
 	NEXT,
-	PREVIUS
+	PREVIOUS
 };

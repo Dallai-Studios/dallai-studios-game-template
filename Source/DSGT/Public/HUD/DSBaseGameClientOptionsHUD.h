@@ -27,7 +27,7 @@ public:
 	void ToggleInvertMouseX();
 
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
-	void ToggleInvertMouseY(bool value);
+	void ToggleInvertMouseY();
 	
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void UpdateMasterVolume(float value);
@@ -48,7 +48,7 @@ public:
 	void ToggleVsync(bool value);
 
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
-	void SetFramerate(int value);
+	void ChangeFramerate(EDSGameClientOptionsChangeType type);
 
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void ChangeShadowQuality(EDSGameClientOptionsChangeType type);

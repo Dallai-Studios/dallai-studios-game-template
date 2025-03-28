@@ -18,7 +18,7 @@ void UDSBaseGameClientOptionsHUD::ToggleInvertMouseX() {
 	this->gameClientOptions->bInvertMouseX = !this->gameClientOptions->bInvertMouseX;
 }
 
-void UDSBaseGameClientOptionsHUD::ToggleInvertMouseY(bool value) {
+void UDSBaseGameClientOptionsHUD::ToggleInvertMouseY() {
 	this->gameClientOptions->bInvertMouseY = !this->gameClientOptions->bInvertMouseY;
 }
 
@@ -55,8 +55,13 @@ void UDSBaseGameClientOptionsHUD::ToggleVsync(bool value) {
 	this->gameClientOptions->bEnableVSync = !this->gameClientOptions->bEnableVSync;
 }
 
-void UDSBaseGameClientOptionsHUD::SetFramerate(int value) {
-	this->gameClientOptions->frameRateLimit = value;
+void UDSBaseGameClientOptionsHUD::ChangeFramerate(EDSGameClientOptionsChangeType type) {
+	if (type == EDSGameClientOptionsChangeType::NEXT) {
+
+		return;
+	}
+
+	
 }
 
 void UDSBaseGameClientOptionsHUD::ChangeShadowQuality(EDSGameClientOptionsChangeType type) {
