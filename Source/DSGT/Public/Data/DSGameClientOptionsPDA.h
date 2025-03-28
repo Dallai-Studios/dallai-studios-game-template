@@ -9,7 +9,7 @@
 UCLASS()
 class DSGT_API UDSGameClientOptionsPDA : public UPrimaryDataAsset {
 	GENERATED_BODY()
-
+	
 public:
 	// ==============================================================
 	// Gameplay Settings:
