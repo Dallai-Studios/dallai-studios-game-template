@@ -23,6 +23,9 @@ void UDSGameClientOptionsPDA::ResetClientOptions() {
 	this->grassQuality = 2;
 	this->globalIlluminationQuality = 2;
 	this->antiAliasingQuality = 2;
+	this->shaderQuality = 2;
+	this->reflectionQuality = 2;
+	this->viewDistanceQuality = 2;
 
 	this->resolutionSelectedIndex = 4;
 	this->framerateSelectedIndex = 0;

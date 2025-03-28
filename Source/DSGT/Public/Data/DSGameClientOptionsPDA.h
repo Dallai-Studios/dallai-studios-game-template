@@ -78,8 +78,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Video Options")
 	int antiAliasingQuality = 2; // 0 = Low, 1 = Medium, 2 = High, 3 = Very High, 4 = Ultra
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Video Options")
+	int shaderQuality = 2; // 0 = Low, 1 = Medium, 2 = High, 3 = Very High, 4 = Ultra
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Video Options")
+	int reflectionQuality = 2; // 0 = Low, 1 = Medium, 2 = High, 3 = Very High, 4 = Ultra
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Video Options")
+	int viewDistanceQuality = 2;
 
 
+	
 	// ==============================================================
 	// Aux Data:
 	// ==============================================================

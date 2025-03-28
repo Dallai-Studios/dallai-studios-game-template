@@ -13,13 +13,21 @@ class DSGT_API UDSBaseGameClientOptionsHUD : public UUserWidget {
 	GENERATED_BODY()
 
 public:
+	// ==============================================================
+	// Game Client Options:
+	// ==============================================================
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Client Options")
 	TObjectPtr<class UDSGameClientOptionsPDA> gameClientOptions;
 
+	/// Define if the HUD must use the default font behavior when hovering over the buttons.
+	/// Unreal only change the button style but does not change the text inside of it.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Configuration")
 	bool bUseDefaultButtonHoverFontTransformation = true;
 
 public:
+	// ==============================================================
+	// Gameplay Options Hanlder Functions:
+	// ==============================================================
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void UpdateMouseSensitivity(float value);
 
@@ -28,7 +36,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void ToggleInvertMouseY();
-	
+
+
+
+	// ==============================================================
+	// Audio Options Handler Functions:
+	// ==============================================================
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void UpdateMasterVolume(float value);
 
@@ -38,6 +51,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void UpdateSfxVolume(float value);
 
+
+	// ==============================================================
+	// Video Options Handler Functions:
+	// ==============================================================
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void ChangeWindowMode(EDSGameClientOptionsChangeType type);
 
