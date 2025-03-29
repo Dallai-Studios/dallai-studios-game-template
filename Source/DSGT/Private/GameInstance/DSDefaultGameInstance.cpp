@@ -45,6 +45,7 @@ void UDSDefaultGameInstance::SaveGameClientOptions() {
 	FIntPoint gameResolution = FIntPoint(this->gameClientOptions->resolutionX, this->gameClientOptions->resolutionY);
 
 	gameSettings->SetScreenResolution(gameResolution);
+	gameSettings->SetFrameRateLimit(this->gameClientOptions->frameRateLimit);
 	gameSettings->SetFullscreenMode(this->ConvertWindowMode(this->gameClientOptions->windowMode));
 	gameSettings->SetVSyncEnabled(this->gameClientOptions->bEnableVSync);
 	gameSettings->SetShadowQuality(this->gameClientOptions->shadowQuality);
@@ -54,6 +55,9 @@ void UDSDefaultGameInstance::SaveGameClientOptions() {
 	gameSettings->SetAntiAliasingQuality(this->gameClientOptions->antiAliasingQuality);
 	gameSettings->SetVisualEffectQuality(this->gameClientOptions->vfxQuality);
 	gameSettings->SetFoliageQuality(this->gameClientOptions->grassQuality);
+	gameSettings->SetShadingQuality(this->gameClientOptions->shaderQuality);
+	gameSettings->SetViewDistanceQuality(this->gameClientOptions->viewDistanceQuality);
+	gameSettings->SetReflectionQuality(this->gameClientOptions->reflectionQuality);
 
 	// aplica e salva as configurações no arquivo
 	gameSettings->ApplyResolutionSettings(false);
@@ -88,6 +92,7 @@ void UDSDefaultGameInstance::LoadGameClientOptions() {
 	this->gameClientOptions->resolutionX = gameSettings->GetScreenResolution().X;
 	this->gameClientOptions->resolutionY = gameSettings->GetScreenResolution().Y;
 	this->gameClientOptions->windowMode = gameSettings->GetFullscreenMode();
+	this->gameClientOptions->frameRateLimit = gameSettings->GetFrameRateLimit();
 	this->gameClientOptions->bEnableVSync = gameSettings->IsVSyncEnabled();
 	this->gameClientOptions->frameRateLimit = gameSettings->GetFrameRateLimit();
 	this->gameClientOptions->shadowQuality = gameSettings->GetShadowQuality();
@@ -97,6 +102,9 @@ void UDSDefaultGameInstance::LoadGameClientOptions() {
 	this->gameClientOptions->antiAliasingQuality = gameSettings->GetAntiAliasingQuality();
 	this->gameClientOptions->vfxQuality = gameSettings->GetVisualEffectQuality();
 	this->gameClientOptions->grassQuality = gameSettings->GetFoliageQuality();
+	this->gameClientOptions->shaderQuality = gameSettings->GetShadingQuality();
+	this->gameClientOptions->viewDistanceQuality = gameSettings->GetViewDistanceQuality();
+	this->gameClientOptions->reflectionQuality = gameSettings->GetReflectionQuality();
 
 	this->UpdateClientSoundOptions();
 
