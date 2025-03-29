@@ -31,6 +31,11 @@ public:
 	UPROPERTY(EditAnywhere, Category="Components")
 	TObjectPtr<class UCameraComponent> camera;
 
+
+
+	// ==============================================================
+	// Character Configuration:
+	// ==============================================================
 	
 	
 public:

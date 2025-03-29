@@ -26,7 +26,10 @@ public:
 
 	UPROPERTY(EditAnywhere, Category="Sounds To Play")
 	TObjectPtr<USoundBase> fallLandSound;
-	
+
+private:
+	class UAudioComponent* createdWalkSound;
+	UAudioComponent* createdRunningSound;
 
 	
 public:
@@ -52,4 +55,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void PlayFallLandSound();
+
+	UFUNCTION(BlueprintCallable, Category="Component Methods")
+	void StopAllSounds();
 };
