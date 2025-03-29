@@ -36,6 +36,8 @@ public:
 	// ==============================================================
 	// Character Configuration:
 	// ==============================================================
+	UPROPERTY(EditAnywhere, Category="Character Configuration")
+	TObjectPtr<class UDSCharacterConfigurationPDA> characterConfiguration;
 	
 	
 public:
@@ -54,6 +56,12 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Movement")
 	void MoveCharacter(float axisX, float axisY);
 
+	UFUNCTION(BlueprintCallable, Category="Movement")
+	void StartRunning();
+
+	UFUNCTION(BlueprintCallable, Category="Movement")
+	void StopRunning();
+	
 
 	
 	// ==============================================================

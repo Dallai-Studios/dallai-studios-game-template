@@ -1,8 +1,11 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
 #include "Characters/DSFirstPersonCharacter.h"
-
+#include "Camera/CameraComponent.h"
+#include "Data/DSCharacterConfigurationPDA.h"
 #include "Data/DSGameClientOptionsPDA.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "Tools/DSDebugTools.h"
 
 
@@ -11,10 +14,17 @@
 // ==============================================================
 ADSFirstPersonCharacter::ADSFirstPersonCharacter() {
 	PrimaryActorTick.bCanEverTick = true;
+
+	this->cameraSpringArm = this->CreateDefaultSubobject<USpringArmComponent>("Camera Sprint Arm");
+	this->cameraSpringArm->SetupAttachment(this->GetRootComponent());
+
+	this->camera = this->CreateDefaultSubobject<UCameraComponent>("Player Camera");
+	this->camera->SetupAttachment(this->cameraSpringArm);
 }
 
 void ADSFirstPersonCharacter::BeginPlay() {
 	Super::BeginPlay();
+	this->StopRunning();
 }
 
 void ADSFirstPersonCharacter::Tick(float DeltaTime) {
@@ -32,6 +42,21 @@ void ADSFirstPersonCharacter::MoveCharacter(float axisX, float axisY) {
 	this->AddMovementInput(this->GetActorRightVector(), axisY);
 }
 
+void ADSFirstPersonCharacter::StartRunning() {
+	if (this->characterConfiguration == NULL) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Character Configuration is not defined on First Person Character"));
+		return;
+	}
+	this->GetCharacterMovement()->MaxWalkSpeed = this->characterConfiguration->runningSpeed;	
+}
+
+void ADSFirstPersonCharacter::StopRunning() {
+	if (this->characterConfiguration == NULL) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Character Configuration is not defined on First Person Character"));
+		return;
+	}
+	this->GetCharacterMovement()->MaxWalkSpeed = this->characterConfiguration->walkSpeed;
+}
 
 
 // ==============================================================
