@@ -20,6 +20,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Game Data and Events")
 	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
 
+
+	
+	// ==============================================================
+	// Character Components:
+	// ==============================================================
+	UPROPERTY(EditAnywhere, Category="Components")
+	TObjectPtr<class USpringArmComponent> cameraSpringArm;
+
+	UPROPERTY(EditAnywhere, Category="Components")
+	TObjectPtr<class UCameraComponent> camera;
+
 	
 	
 public:

@@ -1,28 +1,50 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
-
 #include "Characters/DSFirstPersonCharacter.h"
 
+#include "Data/DSGameClientOptionsPDA.h"
+#include "Tools/DSDebugTools.h"
 
-// Sets default values
+
+// ==============================================================
+// Life Cycle:
+// ==============================================================
 ADSFirstPersonCharacter::ADSFirstPersonCharacter() {
-	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-// Called when the game starts or when spawned
 void ADSFirstPersonCharacter::BeginPlay() {
 	Super::BeginPlay();
-	
 }
 
-// Called every frame
 void ADSFirstPersonCharacter::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 }
 
-// Called to bind functionality to input
-void ADSFirstPersonCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) {
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
+
+
+// ==============================================================
+// Character Movement:
+// ==============================================================
+void ADSFirstPersonCharacter::MoveCharacter(float axisX, float axisY) {
+	if (axisX == 0 && axisY == 0) return;
+	this->AddMovementInput(this->GetActorForwardVector(), axisX);
+	this->AddMovementInput(this->GetActorRightVector(), axisY);
 }
 
+
+
+// ==============================================================
+// Character Aim:
+// ==============================================================
+void ADSFirstPersonCharacter::MoveCamera(float axisX, float axisY) {
+	if (axisX == 0 && axisY == 0) return;
+
+	if (this->gameClientOptions == NULL) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Game Client Options is not Defined at First Person Character"));
+		return;
+	} 
+	
+	this->AddControllerPitchInput(this->gameClientOptions->bInvertMouseX ? axisX * -1 : axisX);
+	this->AddControllerYawInput(this->gameClientOptions->bInvertMouseY ? axisY * -1 : axisY);
+}
