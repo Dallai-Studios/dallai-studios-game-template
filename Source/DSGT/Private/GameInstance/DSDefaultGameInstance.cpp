@@ -78,17 +78,17 @@ void UDSDefaultGameInstance::LoadGameClientOptions() {
 	
 	gameSettings->LoadSettings();
 
-	// carrega as gameplay settings
+	// load the gameplay settings
 	this->gameClientOptions->mouseSensitivity = gameSettings->GetMouseSensitivity();
 	this->gameClientOptions->bInvertMouseX = gameSettings->GetInvertMouseAxisX();
 	this->gameClientOptions->bInvertMouseY = gameSettings->GetInvertMouseAxisY();
 
-	// carrega as audio settings
+	// load the audio settings
 	this->gameClientOptions->masterVolume = gameSettings->GetMasterVolume();
 	this->gameClientOptions->musicVolume = gameSettings->GetMusicVolume();
 	this->gameClientOptions->sfxVolume = gameSettings->GetSFXVolume();
 
-	// carrega as video settings
+	// load the video settings
 	this->gameClientOptions->resolutionX = gameSettings->GetScreenResolution().X;
 	this->gameClientOptions->resolutionY = gameSettings->GetScreenResolution().Y;
 	this->gameClientOptions->windowMode = gameSettings->GetFullscreenMode();
