@@ -7,19 +7,30 @@
 #include "DSGamePauseComponent.generated.h"
 
 
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+UCLASS(BlueprintType, Blueprintable, ClassGroup=(Components), meta=(BlueprintSpawnableComponent))
 class UDSGamePauseComponent : public UActorComponent {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this component's properties
-	UDSGamePauseComponent();
+	UPROPERTY(EditAnywhere, Category="Options HUD")
+	TSubclassOf<class UUserWidget> gameClientOptionsHUDWidgetReference;
 
-protected:
-	// Called when the game starts
+private:
+	class UDSBaseGameClientOptionsHUD* gameClientOptionsHUDInstance;
+	
+public:
+	UDSGamePauseComponent();
 	virtual void BeginPlay() override;
 
-public:
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	UFUNCTION(BlueprintCallable, Category="Component Methods")
+	void OpenPauseMenu();
+
+	UFUNCTION(BlueprintCallable, Category="Component Methods")
+	bool IsPauseMenuOpen();
+
+	UFUNCTION(BlueprintCallable, Category="Component Methods")
+	void ClosePauseMenu();
+
+private:
+	bool GameClientHudInstanceIsValid();
 };

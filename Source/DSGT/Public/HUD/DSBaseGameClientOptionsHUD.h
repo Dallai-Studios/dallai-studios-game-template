@@ -7,6 +7,7 @@
 #include "Enums/EDSGameClientOptionsChangeType.h"
 #include "DSBaseGameClientOptionsHUD.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameClientOptionsHudEvent)
 
 UCLASS()
 class UDSBaseGameClientOptionsHUD : public UUserWidget {
@@ -23,6 +24,9 @@ public:
 	/// Unreal only change the button style but does not change the text inside of it.
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Configuration")
 	bool bUseDefaultButtonHoverFontTransformation = true;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FOnGameClientOptionsHudEvent OnCloseGameClientOptionsHUD;
 
 public:
 	// ==============================================================

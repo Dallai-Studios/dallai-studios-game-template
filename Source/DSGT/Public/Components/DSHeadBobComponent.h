@@ -7,7 +7,7 @@
 #include "DSHeadBobComponent.generated.h"
 
 
-UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+UCLASS(BlueprintType, Blueprintable, ClassGroup=(Components), meta=(BlueprintSpawnableComponent))
 class UDSHeadBobComponent : public UActorComponent {
 	GENERATED_BODY()
 

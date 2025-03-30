@@ -1,21 +1,49 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
-
 #include "Components/DSGamePauseComponent.h"
+#include "Blueprint/UserWidget.h"
+#include "HUD/DSBaseGameClientOptionsHUD.h"
+#include "Tools/DSDebugTools.h"
 
 UDSGamePauseComponent::UDSGamePauseComponent() {
-	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
-	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 }
 
 void UDSGamePauseComponent::BeginPlay() {
 	Super::BeginPlay();
+
+	if (!this->GameClientHudInstanceIsValid()) return;
+	
+	this->gameClientOptionsHUDInstance = Cast<UDSBaseGameClientOptionsHUD>(CreateWidget(this, this->gameClientOptionsHUDWidgetReference));
+	this->gameClientOptionsHUDInstance->OnCloseGameClientOptionsHUD.AddDynamic(this, &UDSGamePauseComponent::ClosePauseMenu);
+	this->gameClientOptionsHUDInstance->AddToViewport();
+	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Hidden);
 }
 
-void UDSGamePauseComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
+void UDSGamePauseComponent::OpenPauseMenu() {
+	if (!this->GameClientHudInstanceIsValid()) return;
+	auto playerController = this->GetWorld()->GetFirstPlayerController();
+	playerController->SetInputMode(FInputModeUIOnly());
+	playerController->SetShowMouseCursor(true);
+	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Visible);
 }
 
+bool UDSGamePauseComponent::IsPauseMenuOpen() {
+	return this->gameClientOptionsHUDInstance->IsVisible();
+}
+
+void UDSGamePauseComponent::ClosePauseMenu() {
+	if (!this->GameClientHudInstanceIsValid()) return;
+	auto playerController = this->GetWorld()->GetFirstPlayerController();
+	playerController->SetInputMode(FInputModeGameAndUI());
+	playerController->SetShowMouseCursor(false);
+	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Hidden);
+}
+
+bool UDSGamePauseComponent::GameClientHudInstanceIsValid() {
+	if (this->gameClientOptionsHUDWidgetReference == NULL) {
+		UDSDebugTools::ShowDebugMessage(TEXT("The Game Client Options HUD Reference is not defined on the GamePauseComponent"));
+		return false;
+	}
+	return true;
+}
