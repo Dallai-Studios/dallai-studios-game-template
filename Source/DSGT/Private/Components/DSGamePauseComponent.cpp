@@ -5,6 +5,9 @@
 #include "HUD/DSBaseGameClientOptionsHUD.h"
 #include "Tools/DSDebugTools.h"
 
+// ==============================================================
+// Lifecycle Methods:
+// ==============================================================
 UDSGamePauseComponent::UDSGamePauseComponent() {
 	PrimaryComponentTick.bCanEverTick = false;
 }
@@ -20,6 +23,11 @@ void UDSGamePauseComponent::BeginPlay() {
 	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Hidden);
 }
 
+
+
+// ==============================================================
+// Component Methods:
+// ==============================================================
 void UDSGamePauseComponent::OpenPauseMenu() {
 	if (!this->GameClientHudInstanceIsValid()) return;
 	auto playerController = this->GetWorld()->GetFirstPlayerController();

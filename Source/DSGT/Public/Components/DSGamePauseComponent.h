@@ -12,16 +12,27 @@ class UDSGamePauseComponent : public UActorComponent {
 	GENERATED_BODY()
 
 public:
+	// ==============================================================
+	// HUD Reference:
+	// ==============================================================
 	UPROPERTY(EditAnywhere, Category="Options HUD")
 	TSubclassOf<class UUserWidget> gameClientOptionsHUDWidgetReference;
-
-private:
 	class UDSBaseGameClientOptionsHUD* gameClientOptionsHUDInstance;
+
+
 	
 public:
+	// ==============================================================
+	// Lifecycle Methods:
+	// ==============================================================
 	UDSGamePauseComponent();
 	virtual void BeginPlay() override;
 
+
+	
+	// ==============================================================
+	// Component Methods:
+	// ==============================================================
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void OpenPauseMenu();
 
