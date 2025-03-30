@@ -3,6 +3,7 @@
 #include "Components/DSInteractionDetectionComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
+#include "Interfaces/DSInteractableItemInterface.h"
 #include "Tools/DSDebugTools.h"
 
 UDSInteractionDetectionComponent::UDSInteractionDetectionComponent() {
@@ -38,9 +39,42 @@ AActor* UDSInteractionDetectionComponent::GetCurrentInteractable() {
 	
 	FHitResult hitResult;
 	FVector startLocation = this->ownerCamera->GetComponentLocation();
+	FVector endLocation = startLocation + this->ownerCamera->GetForwardVector() * this->detectionLineSize;
+	FCollisionQueryParams queryParams;
+	queryParams.AddIgnoredActor(this->GetOwner());
 	
+	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
+
+	if (!hit) return NULL;
+
+	AActor* hitActor = hitResult.GetActor();
 	
-	this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
+	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) return hitActor;
+
+	return NULL;
+}
+
+bool UDSInteractionDetectionComponent::CheckForInteractable() {
+	if (this->ownerCamera == NULL) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Owner Camera Component is not defined on the the Interaction Detection Component"));
+		return NULL;
+	}
+	
+	FHitResult hitResult;
+	FVector startLocation = this->ownerCamera->GetComponentLocation();
+	FVector endLocation = startLocation + this->ownerCamera->GetForwardVector() * this->detectionLineSize;
+	FCollisionQueryParams queryParams;
+	queryParams.AddIgnoredActor(this->GetOwner());
+	
+	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
+
+	if (!hit) return false;
+
+	AActor* hitActor = hitResult.GetActor();
+	
+	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) return true;
+
+	return false;
 }
 
 void UDSInteractionDetectionComponent::ShowInteractableHud() {

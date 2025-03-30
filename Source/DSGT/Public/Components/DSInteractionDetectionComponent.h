@@ -12,12 +12,15 @@ class DSGT_API UDSInteractionDetectionComponent : public UActorComponent {
 
 private:
 	// =====================================================
-	// Interaction HUD
+	// Interaction Config
 	// =====================================================
-	UPROPERTY(EditAnywhere, Category="Interacation HUD")
+	UPROPERTY(EditAnywhere, Category="Interacation Config")
 	TSubclassOf<class UUserWidget> interactionHudReference;
 	UUserWidget* interactionHudInstance;
 
+	UPROPERTY(EditAnywhere, Category="Interaction Config")
+	float detectionLineSize = 200;
+	
 	class UCameraComponent* ownerCamera;
 	
 public:
