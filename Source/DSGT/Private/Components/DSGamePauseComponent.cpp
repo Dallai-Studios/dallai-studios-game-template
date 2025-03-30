@@ -16,8 +16,8 @@ void UDSGamePauseComponent::BeginPlay() {
 	Super::BeginPlay();
 
 	if (!this->GameClientHudInstanceIsValid()) return;
-	
-	this->gameClientOptionsHUDInstance = Cast<UDSBaseGameClientOptionsHUD>(CreateWidget(this, this->gameClientOptionsHUDWidgetReference));
+
+	this->gameClientOptionsHUDInstance = Cast<UDSBaseGameClientOptionsHUD>(CreateWidget(this->GetWorld(), this->gameClientOptionsHUDWidgetReference));
 	this->gameClientOptionsHUDInstance->OnCloseGameClientOptionsHUD.AddDynamic(this, &UDSGamePauseComponent::ClosePauseMenu);
 	this->gameClientOptionsHUDInstance->AddToViewport();
 	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Hidden);

@@ -7,7 +7,7 @@
 #include "Enums/EDSGameClientOptionsChangeType.h"
 #include "DSBaseGameClientOptionsHUD.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameClientOptionsHudEvent)
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameClientOptionsHudEvent);
 
 UCLASS()
 class UDSBaseGameClientOptionsHUD : public UUserWidget {
