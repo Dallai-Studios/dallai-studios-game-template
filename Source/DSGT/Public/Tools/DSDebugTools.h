@@ -7,7 +7,7 @@
 #include "DSDebugTools.generated.h"
 
 UCLASS()
-class DSGT_API UDSDebugTools : public UBlueprintFunctionLibrary {
+class UDSDebugTools : public UBlueprintFunctionLibrary {
 	GENERATED_BODY()
 
 public:

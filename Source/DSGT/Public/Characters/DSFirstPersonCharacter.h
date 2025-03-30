@@ -7,7 +7,7 @@
 #include "DSFirstPersonCharacter.generated.h"
 
 UCLASS()
-class DSGT_API ADSFirstPersonCharacter : public ACharacter {
+class ADSFirstPersonCharacter : public ACharacter {
 	GENERATED_BODY()
 
 public:

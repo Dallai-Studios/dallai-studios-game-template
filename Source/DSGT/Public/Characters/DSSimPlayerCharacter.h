@@ -7,7 +7,7 @@
 #include "DSSimPlayerCharacter.generated.h"
 
 UCLASS()
-class DSGT_API ADSSimPlayerCharacter : public ACharacter {
+class ADSSimPlayerCharacter : public ACharacter {
 	GENERATED_BODY()
 
 public:

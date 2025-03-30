@@ -7,7 +7,7 @@
 #include "DSGameUserSettings.generated.h"
 
 UCLASS()
-class DSGT_API UDSGameUserSettings : public UGameUserSettings {
+class UDSGameUserSettings : public UGameUserSettings {
 	GENERATED_BODY()
 
 protected:

@@ -7,7 +7,7 @@
 #include "DSCharacterConfigurationPDA.generated.h"
 
 UCLASS()
-class DSGT_API UDSCharacterConfigurationPDA : public UPrimaryDataAsset {
+class UDSCharacterConfigurationPDA : public UPrimaryDataAsset {
 	GENERATED_BODY()
 
 public:

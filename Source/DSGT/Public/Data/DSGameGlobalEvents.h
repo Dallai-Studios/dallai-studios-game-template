@@ -9,7 +9,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGlobalEvent);
 
 UCLASS()
-class DSGT_API UDSGameGlobalEvents : public UPrimaryDataAsset {
+class UDSGameGlobalEvents : public UPrimaryDataAsset {
 	GENERATED_BODY()
 
 public:

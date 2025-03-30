@@ -8,7 +8,7 @@
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class DSGT_API UDSSimpleFootstepSoundComponent : public UActorComponent {
+class UDSSimpleFootstepSoundComponent : public UActorComponent {
 	GENERATED_BODY()
 
 public:

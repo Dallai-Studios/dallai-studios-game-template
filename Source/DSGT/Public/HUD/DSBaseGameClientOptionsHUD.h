@@ -9,7 +9,7 @@
 
 
 UCLASS()
-class DSGT_API UDSBaseGameClientOptionsHUD : public UUserWidget {
+class UDSBaseGameClientOptionsHUD : public UUserWidget {
 	GENERATED_BODY()
 
 public:

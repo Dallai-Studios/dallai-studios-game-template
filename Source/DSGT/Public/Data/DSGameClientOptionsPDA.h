@@ -7,7 +7,7 @@
 #include "DSGameClientOptionsPDA.generated.h"
 
 UCLASS()
-class DSGT_API UDSGameClientOptionsPDA : public UPrimaryDataAsset {
+class UDSGameClientOptionsPDA : public UPrimaryDataAsset {
 	GENERATED_BODY()
 	
 public:

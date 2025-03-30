@@ -8,7 +8,7 @@
 
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
-class DSGT_API UDSGamePauseComponent : public UActorComponent {
+class UDSGamePauseComponent : public UActorComponent {
 	GENERATED_BODY()
 
 public:

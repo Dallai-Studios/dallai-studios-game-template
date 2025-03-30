@@ -7,7 +7,7 @@
 #include "DSDefaultGameInstance.generated.h"
 
 UCLASS()
-class DSGT_API UDSDefaultGameInstance : public UGameInstance {
+class UDSDefaultGameInstance : public UGameInstance {
 	GENERATED_BODY()
 
 public:
