@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Enums/EDSCharacterSimpleState.h"
 #include "GameFramework/Character.h"
 #include "DSFirstPersonCharacter.generated.h"
 
@@ -36,8 +37,9 @@ public:
 	// ==============================================================
 	// Character Configuration:
 	// ==============================================================
-	UPROPERTY(EditAnywhere, Category="Character Configuration")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Character Configuration")
 	TObjectPtr<class UDSCharacterConfigurationPDA> characterConfiguration;
+
 	
 	
 public:
@@ -47,7 +49,7 @@ public:
 	ADSFirstPersonCharacter();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
-
+	
 
 	
 	// ==============================================================

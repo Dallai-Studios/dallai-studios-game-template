@@ -49,7 +49,7 @@ void ADSFirstPersonCharacter::StartRunning() {
 		UDSDebugTools::ShowDebugMessage(TEXT("Character Configuration is not defined on First Person Character"));
 		return;
 	}
-	this->GetCharacterMovement()->MaxWalkSpeed = this->characterConfiguration->runningSpeed;	
+	this->GetCharacterMovement()->MaxWalkSpeed = this->characterConfiguration->runningSpeed;
 }
 
 void ADSFirstPersonCharacter::StopRunning() {

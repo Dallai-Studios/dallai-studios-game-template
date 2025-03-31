@@ -19,8 +19,6 @@ void UDSGamePauseComponent::BeginPlay() {
 
 	this->gameClientOptionsHUDInstance = Cast<UDSBaseGameClientOptionsHUD>(CreateWidget(this->GetWorld(), this->gameClientOptionsHUDWidgetReference));
 	this->gameClientOptionsHUDInstance->OnCloseGameClientOptionsHUD.AddDynamic(this, &UDSGamePauseComponent::ClosePauseMenu);
-	this->gameClientOptionsHUDInstance->AddToViewport();
-	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Hidden);
 }
 
 
@@ -33,7 +31,7 @@ void UDSGamePauseComponent::OpenPauseMenu() {
 	auto playerController = this->GetWorld()->GetFirstPlayerController();
 	playerController->SetInputMode(FInputModeUIOnly());
 	playerController->SetShowMouseCursor(true);
-	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Visible);
+	this->gameClientOptionsHUDInstance->AddToViewport();
 }
 
 bool UDSGamePauseComponent::IsPauseMenuOpen() {
@@ -43,9 +41,9 @@ bool UDSGamePauseComponent::IsPauseMenuOpen() {
 void UDSGamePauseComponent::ClosePauseMenu() {
 	if (!this->GameClientHudInstanceIsValid()) return;
 	auto playerController = this->GetWorld()->GetFirstPlayerController();
-	playerController->SetInputMode(FInputModeGameAndUI());
+	playerController->SetInputMode(FInputModeGameOnly());
 	playerController->SetShowMouseCursor(false);
-	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Hidden);
+	this->gameClientOptionsHUDInstance->RemoveFromParent();
 }
 
 bool UDSGamePauseComponent::GameClientHudInstanceIsValid() {

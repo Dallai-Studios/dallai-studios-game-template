@@ -6,7 +6,6 @@
 #include "Components/ActorComponent.h"
 #include "DSGamePauseComponent.generated.h"
 
-
 UCLASS(BlueprintType, Blueprintable, ClassGroup=(Components), meta=(BlueprintSpawnableComponent))
 class UDSGamePauseComponent : public UActorComponent {
 	GENERATED_BODY()
@@ -36,7 +35,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void OpenPauseMenu();
 
-	UFUNCTION(BlueprintCallable, Category="Component Methods")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Component Methods")
 	bool IsPauseMenuOpen();
 
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
