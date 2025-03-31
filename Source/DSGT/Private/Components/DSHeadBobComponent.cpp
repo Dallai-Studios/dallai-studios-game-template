@@ -15,17 +15,17 @@ void UDSHeadBobComponent::BeginPlay() {
 	Super::BeginPlay();
 
 	if (this->idleCameraShake == NULL) {
-		UDSDebugTools::ShowDebugMessage(TEXT("Idle Camera Shake is not defined inside the Camera Headbob Component"));
+		UDSDebugTools::ShowDebugMessage(TEXT("Idle Camera Shake is not defined inside the Camera Headbob Component"), FColor::Red);
 		return;
 	}
 
 	if (this->walkCameraShake == NULL) {
-		UDSDebugTools::ShowDebugMessage(TEXT("Walk Camera Shake is not defined inside the Camera Headbob Component"));
+		UDSDebugTools::ShowDebugMessage(TEXT("Walk Camera Shake is not defined inside the Camera Headbob Component"), FColor::Red);
 		return;
 	}
 	
 	if (this->runCameraShake == NULL) {
-		UDSDebugTools::ShowDebugMessage(TEXT("Running Camera Shake is not defined inside the Camera Headbob Component"));
+		UDSDebugTools::ShowDebugMessage(TEXT("Running Camera Shake is not defined inside the Camera Headbob Component"), FColor::Red);
 		return;
 	}
 }
@@ -37,7 +37,7 @@ void UDSHeadBobComponent::BeginPlay() {
 // ==============================================================
 void UDSHeadBobComponent::PlayIdleHeadBob() {
 	if (this->idleCameraShake == NULL) {
-		UDSDebugTools::ShowDebugMessage(TEXT("Idle Camera Shake is not defined inside the Camera Headbob Component"));
+		UDSDebugTools::ShowDebugMessage(TEXT("Idle Camera Shake is not defined inside the Camera Headbob Component"), FColor::Red);
 		return;
 	}
 	
@@ -46,7 +46,7 @@ void UDSHeadBobComponent::PlayIdleHeadBob() {
 
 void UDSHeadBobComponent::PlayWalkHeadBob() {
 	if (this->walkCameraShake == NULL) {
-		UDSDebugTools::ShowDebugMessage(TEXT("Walk Camera Shake is not defined inside the Camera Headbob Component"));
+		UDSDebugTools::ShowDebugMessage(TEXT("Walk Camera Shake is not defined inside the Camera Headbob Component"), FColor::Red);
 		return;
 	}
 	
@@ -55,7 +55,7 @@ void UDSHeadBobComponent::PlayWalkHeadBob() {
 
 void UDSHeadBobComponent::PlayRunningHeadBob() {
 	if (this->runCameraShake == NULL) {
-		UDSDebugTools::ShowDebugMessage(TEXT("Running Camera Shake is not defined inside the Camera Headbob Component"));
+		UDSDebugTools::ShowDebugMessage(TEXT("Running Camera Shake is not defined inside the Camera Headbob Component"), FColor::Red);
 		return;
 	}
 	

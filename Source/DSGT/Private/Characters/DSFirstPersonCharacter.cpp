@@ -17,7 +17,9 @@ ADSFirstPersonCharacter::ADSFirstPersonCharacter() {
 
 	this->cameraSpringArm = this->CreateDefaultSubobject<USpringArmComponent>("Camera Sprint Arm");
 	this->cameraSpringArm->SetupAttachment(this->GetRootComponent());
-
+	this->cameraSpringArm->bUsePawnControlRotation = true;
+	this->cameraSpringArm->bInheritRoll = false;
+	
 	this->camera = this->CreateDefaultSubobject<UCameraComponent>("Player Camera");
 	this->camera->SetupAttachment(this->cameraSpringArm);
 }
@@ -69,7 +71,10 @@ void ADSFirstPersonCharacter::MoveCamera(float axisX, float axisY) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Game Client Options is not Defined at First Person Character"));
 		return;
 	} 
+
+	const auto finalAxisX = this->gameClientOptions->bInvertMouseX ? (axisX * -1) : axisX;
+	const auto finalAxisY = this->gameClientOptions->bInvertMouseY ? (axisY * -1) : axisY;
 	
-	this->AddControllerPitchInput(this->gameClientOptions->bInvertMouseX ? axisX * -1 : axisX);
-	this->AddControllerYawInput(this->gameClientOptions->bInvertMouseY ? axisY * -1 : axisY);
+	this->AddControllerPitchInput(finalAxisX * this->gameClientOptions->mouseSensitivity);
+	this->AddControllerYawInput(finalAxisY * this->gameClientOptions->mouseSensitivity);
 }
