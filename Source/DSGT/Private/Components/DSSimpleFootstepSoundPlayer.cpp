@@ -35,6 +35,11 @@ void UDSSimpleFootstepSoundPlayer::PlayRunningFootstepSound() {
 	);
 }
 
+void UDSSimpleFootstepSoundPlayer::StopAllFootstepSounds() {
+	if (this->walkSoundTimeHandler.IsValid()) this->GetWorld()->GetTimerManager().ClearTimer(this->walkSoundTimeHandler);
+	if (this->runningSoundTimeHandler.IsValid()) this->GetWorld()->GetTimerManager().ClearTimer(this->runningSoundTimeHandler);
+}
+
 void UDSSimpleFootstepSoundPlayer::DetectAndPlayWalkSoundBasedOnSurface() {
 	FHitResult hitResult;
 	auto startLocation = this->GetOwner()->GetActorLocation();

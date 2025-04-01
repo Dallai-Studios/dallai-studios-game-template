@@ -58,6 +58,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void PlayRunningFootstepSound();
 
+	UFUNCTION(BlueprintCallable, Category="Component Methods")
+	void StopAllFootstepSounds();
+
 private:
 	void DetectAndPlayWalkSoundBasedOnSurface();
 	void DetectAndPlayRunningSoundBasedOnSurface();
