@@ -15,23 +15,26 @@ private:
 	// ==================================================
 	// Component Configuration
 	// ==================================================
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	float floorDetectionLineSize;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	TObjectPtr<class USoundBase> concreteFootstepSound;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	TObjectPtr<USoundBase> woodFootstepSound;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	TObjectPtr<USoundBase> grassFootstepSound;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	float walkTimerRate;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	float runningTimerRate;
+
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
+	float pitchVariationWhenCharacterIsRunning = 1;
 
 	// ==================================================
 	// Timer Handlers
@@ -58,4 +61,5 @@ public:
 private:
 	void DetectAndPlayWalkSoundBasedOnSurface();
 	void DetectAndPlayRunningSoundBasedOnSurface();
+	void PlayFootstepSound(EPhysicalSurface surface, bool characterIsRunning = false);
 };

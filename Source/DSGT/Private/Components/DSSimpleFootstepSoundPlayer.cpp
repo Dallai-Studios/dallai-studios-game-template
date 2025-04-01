@@ -46,27 +46,33 @@ void UDSSimpleFootstepSoundPlayer::DetectAndPlayWalkSoundBasedOnSurface() {
 
 	if (hit) {
 		UPhysicalMaterial* physMaterial = hitResult.PhysMaterial.Get();
-		if (physMaterial) {
-			EPhysicalSurface surfaceType = physMaterial->SurfaceType;
-			switch (surfaceType) {
-			case SurfaceType1: // Concrete
-				UGameplayStatics::PlaySound2D(this->GetWorld(), this->concreteFootstepSound);
-				break;
-			case SurfaceType2: // Wood
-				UGameplayStatics::PlaySound2D(this->GetWorld(), this->woodFootstepSound);
-				break;
-			case SurfaceType3: // Grass
-				UGameplayStatics::PlaySound2D(this->GetWorld(), this->grassFootstepSound);
-				break;
-			default:
-				UGameplayStatics::PlaySound2D(this->GetWorld(), this->concreteFootstepSound);
-				break;
-			}
-		}
+		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, false);
 	}
 }
 
 void UDSSimpleFootstepSoundPlayer::DetectAndPlayRunningSoundBasedOnSurface() {
-	
+	FHitResult hitResult;
+    	auto startLocation = this->GetOwner()->GetActorLocation();
+    	auto endLocation = startLocation + ((this->GetOwner()->GetActorUpVector() * -1) * this->floorDetectionLineSize);
+    	FCollisionQueryParams params;
+    	FCollisionResponseParams responseParams;
+    
+    	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, params, responseParams);
+    
+    	if (hit) {
+    		UPhysicalMaterial* physMaterial = hitResult.PhysMaterial.Get();
+    		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, true);
+    	}
 }
 
+void UDSSimpleFootstepSoundPlayer::PlayFootstepSound(EPhysicalSurface surface, bool characterIsRunning) {
+	float pitch = characterIsRunning ? this->pitchVariationWhenCharacterIsRunning : 1;
+
+	TObjectPtr<USoundBase> soundToPlay = this->concreteFootstepSound;
+	
+	if (surface == EPhysicalSurface::SurfaceType1) soundToPlay = this->concreteFootstepSound;
+	if (surface == EPhysicalSurface::SurfaceType2) soundToPlay = this->woodFootstepSound;
+	if (surface == EPhysicalSurface::SurfaceType3) soundToPlay = this->grassFootstepSound;
+
+	UGameplayStatics::PlaySound2D(this->GetWorld(), soundToPlay, 1, pitch);
+}	
