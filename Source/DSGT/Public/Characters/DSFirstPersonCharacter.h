@@ -26,10 +26,10 @@ public:
 	// ==============================================================
 	// Character Components:
 	// ==============================================================
-	UPROPERTY(EditAnywhere, Category="Components")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<class USpringArmComponent> cameraSpringArm;
 
-	UPROPERTY(EditAnywhere, Category="Components")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<class UCameraComponent> camera;
 
 

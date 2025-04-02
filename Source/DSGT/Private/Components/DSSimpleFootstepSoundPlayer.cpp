@@ -43,7 +43,7 @@ void UDSSimpleFootstepSoundPlayer::StopAllFootstepSounds() {
 void UDSSimpleFootstepSoundPlayer::DetectAndPlayWalkSoundBasedOnSurface() {
 	FHitResult hitResult;
 	auto startLocation = this->GetOwner()->GetActorLocation();
-	auto endLocation = startLocation + ((this->GetOwner()->GetActorUpVector() * -1) * this->floorDetectionLineSize);
+	auto endLocation = startLocation + ((this->GetOwner()->GetActorUpVector() * -1) * this->floorDetectionLineSize) ;
 	FCollisionQueryParams params;
 	FCollisionResponseParams responseParams;
 
