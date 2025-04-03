@@ -2,6 +2,8 @@
 
 #include "Data/DSGameClientOptionsPDA.h"
 
+#include "GameInstance/DSDefaultGameInstance.h"
+
 void UDSGameClientOptionsPDA::ResetClientOptions() {
 	this->mouseSensitivity = 1;
 	this->bInvertMouseX = false;
@@ -16,16 +18,16 @@ void UDSGameClientOptionsPDA::ResetClientOptions() {
 	this->windowMode = EWindowMode::Type::Fullscreen;
 	this->bEnableVSync = false;
 	this->frameRateLimit = 0;
-	this->shadowQuality = 2;
-	this->textureQuality = 2;
-	this->postProcessQuality = 2;
-	this->vfxQuality = 2;
-	this->grassQuality = 2;
-	this->globalIlluminationQuality = 2;
-	this->antiAliasingQuality = 2;
-	this->shaderQuality = 2;
-	this->reflectionQuality = 2;
-	this->viewDistanceQuality = 2;
+	this->shadowQuality = 3;
+	this->textureQuality = 3;
+	this->postProcessQuality = 3;
+	this->vfxQuality = 3;
+	this->grassQuality = 3;
+	this->globalIlluminationQuality = 3;
+	this->antiAliasingQuality = 3;
+	this->shaderQuality = 3;
+	this->reflectionQuality = 3;
+	this->viewDistanceQuality = 3;
 
 	this->resolutionSelectedIndex = 4;
 	this->framerateSelectedIndex = 0;

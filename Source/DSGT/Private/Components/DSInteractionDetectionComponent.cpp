@@ -21,6 +21,7 @@ void UDSInteractionDetectionComponent::BeginPlay() {
 
 	this->interactionHudInstance = Cast<UDSBaseInteractionHUD>(CreateWidget(this->GetWorld(), this->interactionHudReference));
 	this->interactionHudInstance->AddToViewport();
+	this->interactionHudInstance->SetVisibility(ESlateVisibility::Collapsed);
 }
 
 void UDSInteractionDetectionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
@@ -77,14 +78,13 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 	AActor* hitActor = hitResult.GetActor();
 	
 	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) {
-		if (this->interactionHudInstance->IsVisible()) return;
+		
+		if (this->interactionHudInstance->GetVisibility() == ESlateVisibility::Visible) return;
 
-		FText interactionText = Cast<IDSInteractableItemInterface>(hitActor)->GetInteractionText_Implementation();
-
-		if (this->interactionHudInstance != NULL) {
-			this->interactionHudInstance->SetInteractionVerbText(interactionText);
-			this->ShowInteractableHud();
-		}
+		FText interactionText = IDSInteractableItemInterface::Execute_GetInteractionText(hitActor);
+		
+		this->interactionHudInstance->SetInteractionVerbText(interactionText);
+		this->ShowInteractableHud();
 		
 		return;
 	}
@@ -93,11 +93,11 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 }
 
 void UDSInteractionDetectionComponent::ShowInteractableHud() {
-	if (this->interactionHudInstance == NULL || this->interactionHudInstance->IsVisible()) return;
+	if (this->interactionHudInstance == NULL || this->interactionHudInstance->GetVisibility() == ESlateVisibility::Visible) return;
 	this->interactionHudInstance->SetVisibility(ESlateVisibility::Visible);
 }
 
 void UDSInteractionDetectionComponent::HideInteractableHud() {
-	if (this->interactionHudInstance == NULL || !this->interactionHudInstance->IsVisible()) return;
+	if (this->interactionHudInstance == NULL || this->interactionHudInstance->GetVisibility() == ESlateVisibility::Collapsed) return;
 	this->interactionHudInstance->SetVisibility(ESlateVisibility::Collapsed);
 }
