@@ -3,6 +3,7 @@
 #include "Components/DSInteractionDetectionComponent.h"
 #include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
+#include "HUD/DSBaseInteractionHUD.h"
 #include "Interfaces/DSInteractableItemInterface.h"
 #include "Tools/DSDebugTools.h"
 
@@ -18,9 +19,7 @@ void UDSInteractionDetectionComponent::BeginPlay() {
 		return;
 	}
 
-	this->interactionHudInstance = CreateWidget(this->GetWorld(), this->interactionHudReference);
-	this->interactionHudInstance->AddToViewport();
-	this->interactionHudInstance->SetVisibility(ESlateVisibility::Hidden);
+	this->interactionHudInstance = Cast<UDSBaseInteractionHUD>(CreateWidget(this->GetWorld(), this->interactionHudReference));
 }
 
 void UDSInteractionDetectionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
@@ -54,10 +53,11 @@ AActor* UDSInteractionDetectionComponent::GetCurrentInteractable() {
 	return NULL;
 }
 
-bool UDSInteractionDetectionComponent::CheckForInteractable() {
+void UDSInteractionDetectionComponent::CheckForInteractable() {
 	if (this->ownerCamera == NULL) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Owner Camera Component is not defined on the the Interaction Detection Component"));
-		return NULL;
+		this->HideInteractableHud();
+		return;
 	}
 	
 	FHitResult hitResult;
@@ -68,19 +68,33 @@ bool UDSInteractionDetectionComponent::CheckForInteractable() {
 	
 	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
 
-	if (!hit) return false;
+	if (!hit) {
+		this->HideInteractableHud();
+		return;
+	};
 
 	AActor* hitActor = hitResult.GetActor();
 	
-	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) return true;
+	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) {
+		if (this->interactionHudInstance->IsVisible()) return;
 
-	return false;
+		FText interactionText = Cast<IDSInteractableItemInterface>(hitActor)->GetInteractionText_Implementation();
+
+		if (this->interactionHudInstance != NULL) {
+			this->interactionHudInstance->SetInteractionVerbText(interactionText);
+			this->ShowInteractableHud();
+		}
+		
+		return;
+	}
+
+	this->HideInteractableHud();
 }
 
 void UDSInteractionDetectionComponent::ShowInteractableHud() {
-	if (this->interactionHudInstance != NULL) this->interactionHudInstance->SetVisibility(ESlateVisibility::Visible);
+	if (this->interactionHudInstance != NULL) this->interactionHudInstance->AddToViewport();
 }
 
 void UDSInteractionDetectionComponent::HideInteractableHud() {
-	if (this->interactionHudInstance !=  NULL) this->interactionHudInstance->SetVisibility(ESlateVisibility::Hidden);
+	if (this->interactionHudInstance !=  NULL) this->interactionHudInstance->RemoveFromParent();
 }

@@ -9,19 +9,20 @@
 UCLASS(Blueprintable, BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class DSGT_API UDSInteractionDetectionComponent : public UActorComponent {
 	GENERATED_BODY()
-
+	
 private:
 	// =====================================================
 	// Interaction Config
 	// =====================================================
 	UPROPERTY(EditAnywhere, Category="Interacation Config")
 	TSubclassOf<class UUserWidget> interactionHudReference;
-	UUserWidget* interactionHudInstance;
+	class UDSBaseInteractionHUD* interactionHudInstance;
 
 	UPROPERTY(EditAnywhere, Category="Interaction Config")
 	float detectionLineSize = 200;
 	
 	class UCameraComponent* ownerCamera;
+	bool isLookingForInteractable = false;
 	
 public:
 	// =====================================================
@@ -43,7 +44,7 @@ public:
 	class AActor* GetCurrentInteractable();
 	
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
-	bool CheckForInteractable();
+	void CheckForInteractable();
 
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void ShowInteractableHud();
