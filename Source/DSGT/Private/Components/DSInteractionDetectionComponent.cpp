@@ -69,7 +69,7 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
 
 	if (!hit) {
-		this->HideInteractableHud();
+		if (this->interactionHudInstance != NULL) this->HideInteractableHud();
 		return;
 	};
 
@@ -92,9 +92,13 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 }
 
 void UDSInteractionDetectionComponent::ShowInteractableHud() {
-	if (this->interactionHudInstance != NULL) this->interactionHudInstance->AddToViewport();
+	if (this->interactionHudInstance != NULL) {
+		if (!this->interactionHudInstance->IsVisible()) this->interactionHudInstance->AddToViewport();
+	}
 }
 
 void UDSInteractionDetectionComponent::HideInteractableHud() {
-	if (this->interactionHudInstance !=  NULL) this->interactionHudInstance->RemoveFromParent();
+	if (this->interactionHudInstance != NULL) {
+		if (this->interactionHudInstance->IsVisible()) this->interactionHudInstance->RemoveFromParent(); 
+	}
 }
