@@ -20,6 +20,7 @@ void UDSInteractionDetectionComponent::BeginPlay() {
 	}
 
 	this->interactionHudInstance = Cast<UDSBaseInteractionHUD>(CreateWidget(this->GetWorld(), this->interactionHudReference));
+	this->interactionHudInstance->AddToViewport();
 }
 
 void UDSInteractionDetectionComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) {
@@ -69,7 +70,7 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
 
 	if (!hit) {
-		if (this->interactionHudInstance != NULL) this->HideInteractableHud();
+		this->HideInteractableHud();
 		return;
 	};
 
@@ -92,13 +93,11 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 }
 
 void UDSInteractionDetectionComponent::ShowInteractableHud() {
-	if (this->interactionHudInstance != NULL) {
-		if (!this->interactionHudInstance->IsVisible()) this->interactionHudInstance->AddToViewport();
-	}
+	if (this->interactionHudInstance == NULL || this->interactionHudInstance->IsVisible()) return;
+	this->interactionHudInstance->SetVisibility(ESlateVisibility::Visible);
 }
 
 void UDSInteractionDetectionComponent::HideInteractableHud() {
-	if (this->interactionHudInstance != NULL) {
-		if (this->interactionHudInstance->IsVisible()) this->interactionHudInstance->RemoveFromParent(); 
-	}
+	if (this->interactionHudInstance == NULL || !this->interactionHudInstance->IsVisible()) return;
+	this->interactionHudInstance->SetVisibility(ESlateVisibility::Collapsed);
 }
