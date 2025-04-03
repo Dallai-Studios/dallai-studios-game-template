@@ -21,7 +21,6 @@ void ADSInteractableItem::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 }
 
-FText ADSInteractableItem::GetInteractionText_Implementation() {
+FText ADSInteractableItem::GetInteractableVerb_Implementation() {
 	return this->interactionName;
 }
-

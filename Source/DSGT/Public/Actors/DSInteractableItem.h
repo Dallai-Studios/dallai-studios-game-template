@@ -11,9 +11,9 @@ UCLASS()
 class DSGT_API ADSInteractableItem : public AActor, public IDSInteractableItemInterface {
 	GENERATED_BODY()
 
-private:
-	UPROPERTY(EditAnywhere, Category="Actor Configuration")
-	FText interactionName;
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	FText interactionName = FText::FromString(TEXT("?Verb Name?"));
 	
 public:
 	// Sets default values for this actor's properties
@@ -26,5 +26,5 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	virtual FText GetInteractionText_Implementation() override;
+	virtual FText GetInteractableVerb_Implementation() override;
 };

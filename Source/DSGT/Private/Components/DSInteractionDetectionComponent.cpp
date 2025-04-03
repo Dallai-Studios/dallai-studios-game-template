@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
 #include "Components/DSInteractionDetectionComponent.h"
+
+#include "Actors/DSInteractableItem.h"
 #include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
 #include "HUD/DSBaseInteractionHUD.h"
@@ -80,8 +82,8 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) {
 		
 		if (this->interactionHudInstance->GetVisibility() == ESlateVisibility::Visible) return;
-
-		FText interactionText = IDSInteractableItemInterface::Execute_GetInteractionText(hitActor);
+		
+		FText interactionText = IDSInteractableItemInterface::Execute_GetInteractableVerb(hitActor);
 		
 		this->interactionHudInstance->SetInteractionVerbText(interactionText);
 		this->ShowInteractableHud();

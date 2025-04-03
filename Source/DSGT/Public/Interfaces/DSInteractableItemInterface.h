@@ -15,6 +15,6 @@ class DSGT_API IDSInteractableItemInterface {
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
-	FText GetInteractionText();
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Interface")
+	FText GetInteractableVerb();
 };
