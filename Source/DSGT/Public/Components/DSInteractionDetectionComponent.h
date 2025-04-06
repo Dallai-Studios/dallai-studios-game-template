@@ -49,7 +49,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void SetOwnerCameraReference(UCameraComponent* ownerCameraComponent);
 
-	UFUNCTION(BlueprintCallable, Category="Component Methods")
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Component Methods")
 	class AActor* GetCurrentInteractable();
 	
 	UFUNCTION(BlueprintCallable, Category="Component Methods")

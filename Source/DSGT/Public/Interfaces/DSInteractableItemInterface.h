@@ -16,12 +16,12 @@ class DSGT_API IDSInteractableItemInterface {
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	FText GetInteractionVerb();
 
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	EDSInteractionType GetInteractionType();
 
-	UFUNCTION(BlueprintNativeEvent)
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void PerformInteraction(class AActor* instigatorActor);
 };
