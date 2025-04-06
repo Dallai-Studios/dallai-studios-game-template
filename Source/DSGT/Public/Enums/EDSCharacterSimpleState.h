@@ -10,4 +10,5 @@ enum class EDSCharacterSimpleState : uint8 {
 	RUNNING,
 	FALLING,
 	DASHING,
+	INTERACTING
 };
