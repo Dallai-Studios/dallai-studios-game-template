@@ -2,6 +2,7 @@
 
 #include "Actors/DSInteractableItem.h"
 #include "Camera/CameraComponent.h"
+#include "Tools/DSDebugTools.h"
 
 // Sets default values
 ADSInteractableItem::ADSInteractableItem() {
@@ -27,4 +28,12 @@ void ADSInteractableItem::Tick(float DeltaTime) {
 
 FText ADSInteractableItem::GetInteractionVerb_Implementation() {
 	return this->interactionName;
+}
+
+EDSInteractionType ADSInteractableItem::GetInteractionType_Implementation() {
+	return this->interactionType;
+}
+
+void ADSInteractableItem::PerformInteraction_Implementation(AActor* instigatorActor) {
+	UDSDebugTools::ShowDebugMessage(TEXT("Interaction Performed. Override this methods to make something usefull"));
 }

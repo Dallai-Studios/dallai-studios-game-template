@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Enums/EDSInteractionType.h"
 #include "GameFramework/Actor.h"
 #include "Interfaces/DSInteractableItemInterface.h"
 #include "DSInteractableItem.generated.h"
@@ -23,7 +24,7 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
-	bool hasStaticInteraction = false;
+	EDSInteractionType interactionType;
 
 public:
 	ADSInteractableItem();
@@ -31,4 +32,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	
 	FText GetInteractionVerb_Implementation();
+	EDSInteractionType GetInteractionType_Implementation();
+	void PerformInteraction_Implementation(AActor* instigatorActor);
 };

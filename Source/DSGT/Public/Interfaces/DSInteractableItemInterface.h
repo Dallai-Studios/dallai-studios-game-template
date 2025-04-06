@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Enums/EDSInteractionType.h"
 #include "UObject/Interface.h"
 #include "DSInteractableItemInterface.generated.h"
 
@@ -17,4 +18,10 @@ class DSGT_API IDSInteractableItemInterface {
 public:
 	UFUNCTION(BlueprintNativeEvent)
 	FText GetInteractionVerb();
+
+	UFUNCTION(BlueprintNativeEvent)
+	EDSInteractionType GetInteractionType();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void PerformInteraction(class AActor* instigatorActor);
 };
