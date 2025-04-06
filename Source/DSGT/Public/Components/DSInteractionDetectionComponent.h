@@ -10,19 +10,30 @@ UCLASS(Blueprintable, BlueprintType, ClassGroup=(Custom), meta=(BlueprintSpawnab
 class DSGT_API UDSInteractionDetectionComponent : public UActorComponent {
 	GENERATED_BODY()
 	
-private:
+protected:
 	// =====================================================
 	// Interaction Config
 	// =====================================================
 	UPROPERTY(EditAnywhere, Category="Interacation Config")
 	TSubclassOf<class UUserWidget> interactionHudReference;
-	class UDSBaseInteractionHUD* interactionHudInstance;
 
-	UPROPERTY(EditAnywhere, Category="Interaction Config")
+	UPROPERTY(BlueprintReadOnly, Category="Interaction Configuration")
+	class UDSBaseInteractionHUD* interactionHudInstance;
+	
+	UPROPERTY(BlueprintReadOnly, Category="Interaction Configuration")
+	bool isLookingForInteractable = false;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Interaction Config")
 	float detectionLineSize = 200;
 	
+	// =====================================================
+	// Owner Data
+	// =====================================================
+	UPROPERTY(BlueprintReadOnly, Category="Owner Data")
 	class UCameraComponent* ownerCamera;
-	bool isLookingForInteractable = false;
+
+	UPROPERTY(BlueprintReadWrite, Category="Cached Interactable Item")
+	class AActor* cachedInteractableItem = NULL;
 	
 public:
 	// =====================================================
@@ -31,8 +42,6 @@ public:
 	UDSInteractionDetectionComponent();
 	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
-
 	
 	// =====================================================
 	// Component Methods

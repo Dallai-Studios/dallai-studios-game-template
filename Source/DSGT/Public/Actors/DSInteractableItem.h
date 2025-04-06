@@ -7,24 +7,28 @@
 #include "Interfaces/DSInteractableItemInterface.h"
 #include "DSInteractableItem.generated.h"
 
-UCLASS()
+UCLASS(BlueprintType, Blueprintable)
 class DSGT_API ADSInteractableItem : public AActor, public IDSInteractableItemInterface {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
-	FText interactionName = FText::FromString(TEXT("?Verb Name?"));
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
+	TObjectPtr<class UStaticMeshComponent> staticMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
+	TObjectPtr<class UCameraComponent> staticCamera;
 	
-public:
-	// Sets default values for this actor's properties
-	ADSInteractableItem();
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	FText interactionName;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	bool hasStaticInteraction = false;
 
 public:
-	// Called every frame
+	ADSInteractableItem();
+	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
-	virtual FText GetInteractableVerb_Implementation() override;
+
+	virtual FText GetInteractionVerb_Implementation() override;
 };

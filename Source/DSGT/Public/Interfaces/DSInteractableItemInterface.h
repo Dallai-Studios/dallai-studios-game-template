@@ -6,7 +6,7 @@
 #include "UObject/Interface.h"
 #include "DSInteractableItemInterface.generated.h"
 
-UINTERFACE()
+UINTERFACE(Blueprintable, BlueprintType)
 class UDSInteractableItemInterface : public UInterface {
 	GENERATED_BODY()
 };
@@ -15,6 +15,6 @@ class DSGT_API IDSInteractableItemInterface {
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Interface")
-	FText GetInteractableVerb();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	FText GetInteractionVerb(); 
 };

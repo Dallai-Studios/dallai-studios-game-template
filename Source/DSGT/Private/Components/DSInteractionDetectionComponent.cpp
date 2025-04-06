@@ -9,6 +9,9 @@
 #include "Interfaces/DSInteractableItemInterface.h"
 #include "Tools/DSDebugTools.h"
 
+// =====================================================
+// Lifecycle Methods:
+// =====================================================
 UDSInteractionDetectionComponent::UDSInteractionDetectionComponent() {
 	PrimaryComponentTick.bCanEverTick = true;
 }
@@ -30,37 +33,25 @@ void UDSInteractionDetectionComponent::TickComponent(float DeltaTime, ELevelTick
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }
 
+// =====================================================
+// Component Methods:
+// =====================================================
 void UDSInteractionDetectionComponent::SetOwnerCameraReference(UCameraComponent* ownerCameraComponent) {
+	// the owner camera is really necessary because all the detection raycasts are casted from
+	// the camera position. Maybe I can create a way later to make this cast any place from the owner
+	// because the ray just need a start location and a direction to be casted.
 	this->ownerCamera = ownerCameraComponent;
 }
 
 AActor* UDSInteractionDetectionComponent::GetCurrentInteractable() {
-	if (this->ownerCamera == NULL) {
-		UDSDebugTools::ShowDebugMessage(TEXT("Owner Camera Component is not defined on the the Interaction Detection Component"));
-		return NULL;
-	}
-	
-	FHitResult hitResult;
-	FVector startLocation = this->ownerCamera->GetComponentLocation();
-	FVector endLocation = startLocation + this->ownerCamera->GetForwardVector() * this->detectionLineSize;
-	FCollisionQueryParams queryParams;
-	queryParams.AddIgnoredActor(this->GetOwner());
-	
-	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
-
-	if (!hit) return NULL;
-
-	AActor* hitActor = hitResult.GetActor();
-	
-	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) return hitActor;
-
-	return NULL;
+	return this->cachedInteractableItem;
 }
 
 void UDSInteractionDetectionComponent::CheckForInteractable() {
 	if (this->ownerCamera == NULL) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Owner Camera Component is not defined on the the Interaction Detection Component"));
 		this->HideInteractableHud();
+		this->cachedInteractableItem = NULL;
 		return;
 	}
 	
@@ -80,10 +71,15 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 	AActor* hitActor = hitResult.GetActor();
 	
 	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) {
+		if (this->interactionHudInstance == NULL) {
+			UDSDebugTools::ShowDebugMessage(TEXT("Interaction HUD Instance is not defined"));
+			return;
+		}
 		
 		if (this->interactionHudInstance->GetVisibility() == ESlateVisibility::Visible) return;
-		
-		FText interactionText = IDSInteractableItemInterface::Execute_GetInteractableVerb(hitActor);
+
+		this->cachedInteractableItem = hitActor; 
+		FText interactionText = IDSInteractableItemInterface::Execute_GetInteractionVerb(hitActor);
 		
 		this->interactionHudInstance->SetInteractionVerbText(interactionText);
 		this->ShowInteractableHud();
@@ -91,6 +87,7 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 		return;
 	}
 
+	this->cachedInteractableItem = NULL;
 	this->HideInteractableHud();
 }
 
