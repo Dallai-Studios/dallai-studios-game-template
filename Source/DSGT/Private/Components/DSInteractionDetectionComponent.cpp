@@ -80,6 +80,8 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 
 		this->cachedInteractableItem = hitActor; 
 		FText interactionText = IDSInteractableItemInterface::Execute_GetInteractionVerb(hitActor);
+
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, interactionText.ToString());
 		
 		this->ShowInteractableHud(interactionText);
 		
