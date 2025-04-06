@@ -8,9 +8,9 @@
 #include "DSInteractableItem.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)
-class DSGT_API ADSInteractableItem : public AActor {
+class DSGT_API ADSInteractableItem : public AActor, public IDSInteractableItemInterface {
 	GENERATED_BODY()
-
+	
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
 	TObjectPtr<class UStaticMeshComponent> staticMesh;
@@ -29,4 +29,6 @@ public:
 	ADSInteractableItem();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+	
+	FText GetInteractionVerb_Implementation();
 };

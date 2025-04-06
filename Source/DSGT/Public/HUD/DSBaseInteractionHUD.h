@@ -10,7 +10,7 @@ UCLASS()
 class DSGT_API UDSBaseInteractionHUD : public UUserWidget {
 	GENERATED_BODY()
 
-protected:
+public:
 	UPROPERTY(BlueprintReadOnly, Category="Controls")
 	FText interactionVerbText;
 

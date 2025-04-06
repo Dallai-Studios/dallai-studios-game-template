@@ -56,7 +56,7 @@ public:
 	void CheckForInteractable();
 
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
-	void ShowInteractableHud();
+	void ShowInteractableHud(FText interactionText);
 
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void HideInteractableHud();

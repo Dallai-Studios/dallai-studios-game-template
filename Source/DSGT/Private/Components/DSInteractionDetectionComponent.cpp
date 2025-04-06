@@ -70,7 +70,7 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 
 	AActor* hitActor = hitResult.GetActor();
 	
-	if (IsValid(hitActor) && hitActor->StaticClass()->ImplementsInterface(UDSInteractableItemInterface::StaticClass())) {
+	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) {
 		if (this->interactionHudInstance == NULL) {
 			UDSDebugTools::ShowDebugMessage(TEXT("Interaction HUD Instance is not defined"));
 			return;
@@ -81,8 +81,7 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 		this->cachedInteractableItem = hitActor; 
 		FText interactionText = IDSInteractableItemInterface::Execute_GetInteractionVerb(hitActor);
 		
-		this->interactionHudInstance->SetInteractionVerbText(interactionText);
-		this->ShowInteractableHud();
+		this->ShowInteractableHud(interactionText);
 		
 		return;
 	}
@@ -91,9 +90,10 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 	this->HideInteractableHud();
 }
 
-void UDSInteractionDetectionComponent::ShowInteractableHud() {
+void UDSInteractionDetectionComponent::ShowInteractableHud(FText interactionText) {
 	if (this->interactionHudInstance == NULL || this->interactionHudInstance->GetVisibility() == ESlateVisibility::Visible) return;
 	this->interactionHudInstance->SetVisibility(ESlateVisibility::Visible);
+	this->interactionHudInstance->interactionVerbText = interactionText;
 }
 
 void UDSInteractionDetectionComponent::HideInteractableHud() {

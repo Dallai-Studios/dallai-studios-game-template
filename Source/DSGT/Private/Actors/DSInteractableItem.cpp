@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
-
 #include "Actors/DSInteractableItem.h"
-
 #include "Camera/CameraComponent.h"
 
 // Sets default values
@@ -25,4 +23,8 @@ void ADSInteractableItem::BeginPlay() {
 // Called every frame
 void ADSInteractableItem::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
+}
+
+FText ADSInteractableItem::GetInteractionVerb_Implementation() {
+	return this->interactionName;
 }

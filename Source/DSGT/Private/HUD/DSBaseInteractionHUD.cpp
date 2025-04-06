@@ -2,6 +2,7 @@
 
 
 #include "HUD/DSBaseInteractionHUD.h"
+
 void UDSBaseInteractionHUD::SetInteractionVerbText(FText newText) {
 	this->interactionVerbText = newText;
 }

@@ -16,5 +16,5 @@ class DSGT_API IDSInteractableItemInterface {
 
 public:
 	UFUNCTION(BlueprintNativeEvent)
-	FText GetInteractionVerb(); 
+	FText GetInteractionVerb();
 };
