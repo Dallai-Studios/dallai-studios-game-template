@@ -8,7 +8,7 @@
 #include "DSInteractableItem.generated.h"
 
 UCLASS(BlueprintType, Blueprintable)
-class DSGT_API ADSInteractableItem : public AActor, public IDSInteractableItemInterface {
+class DSGT_API ADSInteractableItem : public AActor {
 	GENERATED_BODY()
 
 public:
@@ -29,6 +29,4 @@ public:
 	ADSInteractableItem();
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
-
-	virtual FText GetInteractionVerb_Implementation() override;
 };

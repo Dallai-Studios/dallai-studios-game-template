@@ -26,7 +26,3 @@ void ADSInteractableItem::BeginPlay() {
 void ADSInteractableItem::Tick(float DeltaTime) {
 	Super::Tick(DeltaTime);
 }
-
-FText ADSInteractableItem::GetInteractionVerb_Implementation() {
-	return this->interactionName;
-}

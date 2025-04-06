@@ -70,7 +70,7 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 
 	AActor* hitActor = hitResult.GetActor();
 	
-	if (IsValid(hitActor) && hitActor->Implements<UDSInteractableItemInterface>()) {
+	if (IsValid(hitActor) && hitActor->StaticClass()->ImplementsInterface(UDSInteractableItemInterface::StaticClass())) {
 		if (this->interactionHudInstance == NULL) {
 			UDSDebugTools::ShowDebugMessage(TEXT("Interaction HUD Instance is not defined"));
 			return;
