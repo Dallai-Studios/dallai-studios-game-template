@@ -32,6 +32,8 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category="Actor Configuration")
 	UUserWidget* interactableHUDInstance;
 
+	UPROPERTY(Blueprint)
+
 public:
 	ADSInteractableItem();
 	virtual void BeginPlay() override;

@@ -45,7 +45,7 @@ EDSInteractionType ADSInteractableItem::GetInteractionType_Implementation() {
 void ADSInteractableItem::PerformInteraction_Implementation(AActor* instigatorActor) {
 	// I don't think any behavior here will be good at this point. But who knows.
 	// I Believe that, at some point I'll need some form of basic behaior to handle some general
-	// interactions, but at this point, it is not necessary. -Renan
+	// interactions, but at this point, it is not necessary. -Dallai
 	UDSDebugTools::ShowDebugMessage(TEXT("Interaction Performed. Override this methods to make something usefull out of it"));
 }
 

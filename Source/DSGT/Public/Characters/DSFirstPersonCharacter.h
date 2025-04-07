@@ -37,11 +37,11 @@ public:
 	TObjectPtr<class UDSCharacterConfigurationPDA> characterConfiguration;
 
 private:
-	// variables to store the movement values for some strafe action. -Renan
+	// variables to store the movement values for some strafe action. -Dallai
 	float forwardMovementValue = 0;
 	float rightMovementValue = 0;
 
-	// variables to store the camera input values for any reason. -Renan
+	// variables to store the camera input values for any reason. -Dallai
 	float cameraUpValue = 0;
 	float cameraRightValue = 0;
 
