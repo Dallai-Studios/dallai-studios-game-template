@@ -26,6 +26,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	EDSInteractionType interactionType;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	TSubclassOf<class UUserWidget> interactableHud;
+
+	UPROPERTY(BlueprintReadOnly, Category="Actor Configuration")
+	UUserWidget* interactableHUDInstance;
+
 public:
 	ADSInteractableItem();
 	virtual void BeginPlay() override;
@@ -34,4 +40,5 @@ public:
 	FText GetInteractionVerb_Implementation();
 	EDSInteractionType GetInteractionType_Implementation();
 	void PerformInteraction_Implementation(AActor* instigatorActor);
+	void OpenStaticInteractionHUD_Implementation();
 };

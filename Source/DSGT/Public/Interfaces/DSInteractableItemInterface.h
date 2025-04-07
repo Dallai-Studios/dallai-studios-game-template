@@ -24,4 +24,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void PerformInteraction(class AActor* instigatorActor);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void OpenStaticInteractionHUD();
 };
