@@ -56,3 +56,12 @@ void ADSInteractableItem::OpenStaticInteractionHUD_Implementation() {
 	}
 	this->interactableHUDInstance->SetVisibility(ESlateVisibility::Visible);
 }
+
+FString ADSInteractableItem::GetItemId_Implementation() {
+	return this->itemId;
+}
+
+UStaticMesh* ADSInteractableItem::GetItemHoldableStaticMesh_Implementation() {
+	return this->staticMesh->GetStaticMesh().Get();
+}
+

@@ -27,4 +27,10 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	void OpenStaticInteractionHUD();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	FString GetItemId();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	class UStaticMesh* GetItemHoldableStaticMesh();
 };

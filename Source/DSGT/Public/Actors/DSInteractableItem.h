@@ -44,4 +44,6 @@ public:
 	EDSInteractionType GetInteractionType_Implementation();
 	void PerformInteraction_Implementation(AActor* instigatorActor);
 	void OpenStaticInteractionHUD_Implementation();
+	FString GetItemId_Implementation();
+	class UStaticMesh* GetItemHoldableStaticMesh_Implementation();
 };
