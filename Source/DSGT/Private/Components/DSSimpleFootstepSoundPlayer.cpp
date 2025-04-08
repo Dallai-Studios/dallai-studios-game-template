@@ -12,7 +12,9 @@ void UDSSimpleFootstepSoundPlayer::BeginPlay() {
 }
 
 void UDSSimpleFootstepSoundPlayer::PlayWalkFootstepSound() {
-	if (this->runningSoundTimeHandler.IsValid()) this->GetWorld()->GetTimerManager().ClearTimer(this->runningSoundTimeHandler);
+	if (this->runningSoundTimeHandler.IsValid()) {
+		this->GetWorld()->GetTimerManager().ClearTimer(this->runningSoundTimeHandler);
+	}
 	
 	this->GetWorld()->GetTimerManager().SetTimer(
 		this->walkSoundTimeHandler,

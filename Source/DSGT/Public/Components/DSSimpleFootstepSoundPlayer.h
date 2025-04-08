@@ -16,29 +16,30 @@ private:
 	// Component Configuration
 	// ==================================================
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
-	float floorDetectionLineSize;
+	float floorDetectionLineSize; //define the size of the raycast to detect the floor.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
-	TObjectPtr<class USoundBase> concreteFootstepSound;
+	TObjectPtr<class USoundBase> concreteFootstepSound; // sound to play when the player is walking on concrete.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
-	TObjectPtr<USoundBase> woodFootstepSound;
+	TObjectPtr<USoundBase> woodFootstepSound; // sound to play when the player is walking on wood surfaces.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
-	TObjectPtr<USoundBase> grassFootstepSound;
+	TObjectPtr<USoundBase> grassFootstepSound; // sound to play when player is walking on grass surfaces.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
-	float walkTimerRate;
+	float walkTimerRate; // amount of time to perform the next floor detection when walking.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
-	float runningTimerRate;
+	float runningTimerRate; // amount of time to perform the next floor detection when running.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
-	float pitchVariationWhenCharacterIsRunning = 1;
+	float pitchVariationWhenCharacterIsRunning = 1.1; // define the pitch variation when the player is running.
 
 	// ==================================================
 	// Timer Handlers
 	// ==================================================
+	// this timers will handle the "tick" of the surface type detection when the player is walking or running; -Dallai
 	FTimerHandle walkSoundTimeHandler;
 	FTimerHandle runningSoundTimeHandler;
 	
