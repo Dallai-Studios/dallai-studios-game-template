@@ -18,10 +18,13 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
 	TObjectPtr<class UCameraComponent> staticCamera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	FString itemId;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	FText interactionName;
-
+	
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	EDSInteractionType interactionType;
@@ -31,8 +34,6 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category="Actor Configuration")
 	UUserWidget* interactableHUDInstance;
-
-	UPROPERTY(Blueprint)
 
 public:
 	ADSInteractableItem();
