@@ -26,7 +26,9 @@ void UDSSimpleFootstepSoundPlayer::PlayWalkFootstepSound() {
 }
 
 void UDSSimpleFootstepSoundPlayer::PlayRunningFootstepSound() {
-	if (this->walkSoundTimeHandler.IsValid()) this->GetWorld()->GetTimerManager().ClearTimer(this->walkSoundTimeHandler);
+	if (this->walkSoundTimeHandler.IsValid()) {
+		this->GetWorld()->GetTimerManager().ClearTimer(this->walkSoundTimeHandler);
+	}
 	
 	this->GetWorld()->GetTimerManager().SetTimer(
 		this->runningSoundTimeHandler,
@@ -47,10 +49,13 @@ void UDSSimpleFootstepSoundPlayer::DetectAndPlayWalkSoundBasedOnSurface() {
 	auto startLocation = this->GetOwner()->GetActorLocation();
 	auto endLocation = startLocation + ((this->GetOwner()->GetActorUpVector() * -1) * this->floorDetectionLineSize) ;
 	FCollisionQueryParams params;
+	params.bReturnPhysicalMaterial = true;
 	FCollisionResponseParams responseParams;
 
 	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, params, responseParams);
 
+	DrawDebugLine(this->GetWorld(), startLocation, endLocation, hit ? FColor::Green : FColor::Red, false, 10);
+	
 	if (hit) {
 		UPhysicalMaterial* physMaterial = hitResult.PhysMaterial.Get();
 		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, false);
@@ -62,10 +67,13 @@ void UDSSimpleFootstepSoundPlayer::DetectAndPlayRunningSoundBasedOnSurface() {
     	auto startLocation = this->GetOwner()->GetActorLocation();
     	auto endLocation = startLocation + ((this->GetOwner()->GetActorUpVector() * -1) * this->floorDetectionLineSize);
     	FCollisionQueryParams params;
+		params.bReturnPhysicalMaterial = true;
     	FCollisionResponseParams responseParams;
     
     	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, params, responseParams);
-    
+
+		DrawDebugLine(this->GetWorld(), startLocation, endLocation, hit ? FColor::Green : FColor::Red, false, 10);
+	
     	if (hit) {
     		UPhysicalMaterial* physMaterial = hitResult.PhysMaterial.Get();
     		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, true);
@@ -80,6 +88,7 @@ void UDSSimpleFootstepSoundPlayer::PlayFootstepSound(EPhysicalSurface surface, b
 	if (surface == EPhysicalSurface::SurfaceType1) soundToPlay = this->concreteFootstepSound;
 	if (surface == EPhysicalSurface::SurfaceType2) soundToPlay = this->woodFootstepSound;
 	if (surface == EPhysicalSurface::SurfaceType3) soundToPlay = this->grassFootstepSound;
+	if (surface == EPhysicalSurface::SurfaceType4) soundToPlay = this->carpetFootstepSound;
 
 	UGameplayStatics::PlaySound2D(this->GetWorld(), soundToPlay, 1, pitch);
 }	

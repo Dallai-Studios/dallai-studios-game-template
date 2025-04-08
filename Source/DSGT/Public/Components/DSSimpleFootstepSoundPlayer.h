@@ -28,6 +28,9 @@ private:
 	TObjectPtr<USoundBase> grassFootstepSound; // sound to play when player is walking on grass surfaces.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
+	TObjectPtr<USoundBase> carpetFootstepSound;
+	
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	float walkTimerRate; // amount of time to perform the next floor detection when walking.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
