@@ -3,6 +3,6 @@
 
 #include "Tools/DSDebugTools.h"
 
-void UDSDebugTools::ShowDebugMessage(FString message, FColor color) {
-	GEngine->AddOnScreenDebugMessage(-1, 10, color, message);
+void UDSDebugTools::ShowDebugMessage(FString message, FColor color, float time) {
+	GEngine->AddOnScreenDebugMessage(-1, time, color, message);
 }

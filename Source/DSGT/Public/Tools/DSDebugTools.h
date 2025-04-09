@@ -11,5 +11,5 @@ class UDSDebugTools : public UBlueprintFunctionLibrary {
 	GENERATED_BODY()
 
 public:
-	void static ShowDebugMessage(FString message, FColor color = FColor::Orange);
+	void static ShowDebugMessage(FString message, FColor color = FColor::Orange, float time = 10);
 };
