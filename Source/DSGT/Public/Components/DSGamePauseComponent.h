@@ -14,10 +14,23 @@ public:
 	// ==============================================================
 	// HUD Reference:
 	// ==============================================================
-	UPROPERTY(EditAnywhere, Category="Options HUD")
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	TSubclassOf<class UUserWidget> gameClientOptionsHUDWidgetReference;
 	class UDSBaseGameClientOptionsHUD* gameClientOptionsHUDInstance;
-	
+
+	// ==============================================================
+	// Sound to play when the HUD Opens:
+	// ==============================================================
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
+	TObjectPtr<class USoundBase> pauseMenuMusic;
+	class UAudioComponent* audioComponent;
+
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
+	TObjectPtr<class UCurveFloat> audioFadeOutCurve;
+
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
+	TObjectPtr<class UTimelineComponent> audioFadeOutTimeline;
+
 public:
 	// ==============================================================
 	// Lifecycle Methods:
@@ -36,7 +49,14 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void ClosePauseMenu();
+	
+protected:
+	UFUNCTION()
+	void HandleAudioFadeOut(float value);
 
+	UFUNCTION()
+	void OnFadeOutFinish();
+	
 private:
 	bool GameClientHudInstanceIsValid();
 };
