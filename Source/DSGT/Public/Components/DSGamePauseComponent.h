@@ -17,8 +17,6 @@ public:
 	UPROPERTY(EditAnywhere, Category="Options HUD")
 	TSubclassOf<class UUserWidget> gameClientOptionsHUDWidgetReference;
 	class UDSBaseGameClientOptionsHUD* gameClientOptionsHUDInstance;
-
-
 	
 public:
 	// ==============================================================
@@ -26,8 +24,6 @@ public:
 	// ==============================================================
 	UDSGamePauseComponent();
 	virtual void BeginPlay() override;
-
-
 	
 	// ==============================================================
 	// Component Methods:

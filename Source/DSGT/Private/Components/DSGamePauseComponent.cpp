@@ -23,8 +23,6 @@ void UDSGamePauseComponent::BeginPlay() {
 	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Collapsed);
 }
 
-
-
 // ==============================================================
 // Component Methods:
 // ==============================================================
