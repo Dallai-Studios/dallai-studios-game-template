@@ -15,6 +15,12 @@ class UDSBaseGameClientOptionsHUD : public UUserWidget {
 
 public:
 	// ==============================================================
+	// Game Global Events:
+	// ==============================================================
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Global Events")
+	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
+	
+	// ==============================================================
 	// Game Client Options:
 	// ==============================================================
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Client Options")
@@ -30,7 +36,7 @@ public:
 
 public:
 	// ==============================================================
-	// Gameplay Options Hanlder Functions:
+	// Gameplay Options Handler Functions:
 	// ==============================================================
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void UpdateMouseSensitivity(float value);
@@ -40,8 +46,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void ToggleInvertMouseY();
-
-
 
 	// ==============================================================
 	// Audio Options Handler Functions:

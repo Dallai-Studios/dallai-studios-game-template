@@ -16,7 +16,7 @@ public:
 	// ==============================================================
 	UPROPERTY(EditAnywhere, Category="Options HUD")
 	TSubclassOf<class UUserWidget> gameClientOptionsHUDWidgetReference;
-	UUserWidget* gameClientOptionsHUDInstance;
+	class UDSBaseGameClientOptionsHUD* gameClientOptionsHUDInstance;
 	
 public:
 	// ==============================================================
