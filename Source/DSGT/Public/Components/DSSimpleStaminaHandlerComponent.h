@@ -40,15 +40,13 @@ public:
 	float GetCurrentStamina() const;
 	
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
-	void DecreaseStamina();
-	
-	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void EnableStaminaRestoration();
 
 	UFUNCTION(BlueprintCallable, Category="Componetn Methods")
 	void DisableStaminaRestoration();
 
 private:
+	void DecreaseStamina(float deltaTime);
 	void RestoreStamina(float deltaTime);
 	void DisplayDebugInfoOnScreen();
 };
