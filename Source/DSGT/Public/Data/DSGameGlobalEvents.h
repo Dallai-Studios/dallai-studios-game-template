@@ -12,10 +12,24 @@ UCLASS()
 class UDSGameGlobalEvents : public UPrimaryDataAsset {
 	GENERATED_BODY()
 
+protected:
+	UPROPERTY(BlueprintReadOnly, Category="Game Global Data")
+	bool bIsGamePaused = false;
+	
 public:
 	UPROPERTY(BlueprintAssignable, Category="Game Global Events")
 	FGlobalEvent OnOpenOptionsMenu;
 
 	UPROPERTY(BlueprintAssignable, Category="Game Global Events")
 	FGlobalEvent OnCloseOptionsMenu;
+
+public:
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool IsGamePaused() const;
+
+	UFUNCTION(BlueprintCallable)
+	void PauseGame();
+
+	UFUNCTION(BlueprintCallable)
+	void UnpauseGame();
 };

@@ -4,6 +4,7 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/AudioComponent.h"
 #include "Components/TimelineComponent.h"
+#include "Data/DSGameGlobalEvents.h"
 #include "HUD/DSBaseGameClientOptionsHUD.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tools/DSDebugTools.h"
@@ -38,6 +39,10 @@ void UDSGamePauseComponent::BeginPlay() {
 		this->gameClientOptionsHUDInstance->AddToViewport();
 		this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Collapsed);
 	}
+
+	if (!this->gameGlobalEvents) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Game global Events and Data is not defined on the Game Pause Component."), FColor::Red);
+	}
 }
 
 // ==============================================================
@@ -55,6 +60,10 @@ void UDSGamePauseComponent::OpenPauseMenu() {
 		this->audioComponent = UGameplayStatics::CreateSound2D(this->GetWorld(), this->pauseMenuMusic);
 		this->audioComponent->Play();
 	}
+
+	if (this->gameGlobalEvents) {
+		this->gameGlobalEvents->PauseGame();
+	}
 }
 
 bool UDSGamePauseComponent::IsPauseMenuOpen() {
@@ -69,6 +78,10 @@ void UDSGamePauseComponent::ClosePauseMenu() {
 
 	if (this->audioComponent && this->audioFadeOutCurve) {
 		this->audioFadeOutTimeline->PlayFromStart();
+	}
+
+	if (this->gameGlobalEvents) {
+		this->gameGlobalEvents->UnpauseGame();
 	}
 }
 

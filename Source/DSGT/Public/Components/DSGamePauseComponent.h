@@ -12,6 +12,12 @@ class UDSGamePauseComponent : public UActorComponent {
 
 public:
 	// ==============================================================
+	// Game global events:
+	// ==============================================================
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Game global events")
+	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
+
+	// ==============================================================
 	// HUD Reference:
 	// ==============================================================
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
