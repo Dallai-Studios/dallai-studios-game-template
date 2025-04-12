@@ -50,6 +50,7 @@ void UDSGamePauseComponent::BeginPlay() {
 // ==============================================================
 void UDSGamePauseComponent::OpenPauseMenu() {
 	if (!this->GameClientHudInstanceIsValid()) return;
+	
 	auto playerController = this->GetWorld()->GetFirstPlayerController();
 	playerController->SetShowMouseCursor(true);
 	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Visible);
@@ -67,11 +68,13 @@ void UDSGamePauseComponent::OpenPauseMenu() {
 }
 
 bool UDSGamePauseComponent::IsPauseMenuOpen() {
+	if (!this->GameClientHudInstanceIsValid()) return false;
 	return this->gameClientOptionsHUDInstance->IsVisible();
 }
 
 void UDSGamePauseComponent::ClosePauseMenu() {
 	if (!this->GameClientHudInstanceIsValid()) return;
+	
 	auto playerController = this->GetWorld()->GetFirstPlayerController();
 	playerController->SetShowMouseCursor(false);
 	this->gameClientOptionsHUDInstance->SetVisibility(ESlateVisibility::Collapsed);
