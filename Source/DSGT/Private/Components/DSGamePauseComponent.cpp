@@ -43,6 +43,8 @@ void UDSGamePauseComponent::BeginPlay() {
 	if (!this->gameGlobalEvents) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Game global Events and Data is not defined on the Game Pause Component."), FColor::Red);
 	}
+
+	this->gameGlobalEvents->UnpauseGame();
 }
 
 // ==============================================================
@@ -62,7 +64,7 @@ void UDSGamePauseComponent::OpenPauseMenu() {
 		this->audioComponent->Play();
 	}
 
-	if (this->gameGlobalEvents) {
+	if (this->gameGlobalEvents != NULL) {
 		this->gameGlobalEvents->PauseGame();
 	}
 }

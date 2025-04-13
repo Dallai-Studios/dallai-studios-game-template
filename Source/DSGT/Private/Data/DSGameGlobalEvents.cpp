@@ -11,5 +11,5 @@ void UDSGameGlobalEvents::PauseGame() {
 }
 
 void UDSGameGlobalEvents::UnpauseGame() {
-	this->bIsGamePaused = true;
+	this->bIsGamePaused = false;
 }
