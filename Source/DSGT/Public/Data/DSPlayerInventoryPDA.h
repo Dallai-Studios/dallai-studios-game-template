@@ -22,7 +22,7 @@ public:
 	bool PlayerHasItem(FString itemId) const;
 
 	UFUNCTION(BlueprintCallable, Category="Inventory Functions")
-	void AddNewItemToPlayerInventory(UDSItemDataPDA* newItem);
+	bool AddNewItemToPlayerInventory(UDSItemDataPDA* newItem);
 
 	UFUNCTION(BlueprintCallable, Category="Inventory Functions")
 	void RemoveItemFromInventory(FString itemId);
