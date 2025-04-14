@@ -68,5 +68,5 @@ public:
 private:
 	void DetectAndPlayWalkSoundBasedOnSurface();
 	void DetectAndPlayRunningSoundBasedOnSurface();
-	void PlayFootstepSound(EPhysicalSurface surface, bool characterIsRunning = false);
+	void PlayFootstepSound(EPhysicalSurface surface, bool characterIsRunning, FVector location);
 };

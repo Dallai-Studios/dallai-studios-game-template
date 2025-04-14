@@ -58,7 +58,7 @@ void UDSSimpleFootstepSoundPlayer::DetectAndPlayWalkSoundBasedOnSurface() {
 	
 	if (hit) {
 		UPhysicalMaterial* physMaterial = hitResult.PhysMaterial.Get();
-		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, false);
+		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, false, hitResult.Location);
 	}
 }
 
@@ -76,11 +76,11 @@ void UDSSimpleFootstepSoundPlayer::DetectAndPlayRunningSoundBasedOnSurface() {
 	
     	if (hit) {
     		UPhysicalMaterial* physMaterial = hitResult.PhysMaterial.Get();
-    		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, true);
+    		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, true, hitResult.Location);
     	}
 }
 
-void UDSSimpleFootstepSoundPlayer::PlayFootstepSound(EPhysicalSurface surface, bool characterIsRunning) {
+void UDSSimpleFootstepSoundPlayer::PlayFootstepSound(EPhysicalSurface surface, bool characterIsRunning, FVector location) {
 	float pitch = characterIsRunning ? this->pitchVariationWhenCharacterIsRunning : 1;
 
 	TObjectPtr<USoundBase> soundToPlay = this->concreteFootstepSound;
@@ -90,5 +90,5 @@ void UDSSimpleFootstepSoundPlayer::PlayFootstepSound(EPhysicalSurface surface, b
 	if (surface == EPhysicalSurface::SurfaceType3) soundToPlay = this->grassFootstepSound;
 	if (surface == EPhysicalSurface::SurfaceType4) soundToPlay = this->carpetFootstepSound;
 
-	UGameplayStatics::PlaySound2D(this->GetWorld(), soundToPlay, 1, pitch);
+	UGameplayStatics::PlaySoundAtLocation(this->GetWorld(), soundToPlay, location, FRotator::ZeroRotator, 1, pitch);
 }	
