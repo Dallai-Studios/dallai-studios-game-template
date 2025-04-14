@@ -21,8 +21,11 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Inventory Functions")
 	bool PlayerHasItem(FString itemId) const;
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Inventory Functions")
+	bool IsInventoryFull();
+	
 	UFUNCTION(BlueprintCallable, Category="Inventory Functions")
-	bool AddNewItemToPlayerInventory(UDSItemDataPDA* newItem);
+	void AddNewItemToPlayerInventory(UDSItemDataPDA* newItem);
 
 	UFUNCTION(BlueprintCallable, Category="Inventory Functions")
 	void RemoveItemFromInventory(FString itemId);

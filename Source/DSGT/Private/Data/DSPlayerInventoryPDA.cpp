@@ -16,10 +16,12 @@ bool UDSPlayerInventoryPDA::PlayerHasItem(FString itemId) const {
 	return false;
 }
 
-bool UDSPlayerInventoryPDA::AddNewItemToPlayerInventory(UDSItemDataPDA* newItem) {
-	if (this->items.Num() == this->maxAmountOfItens) return false;
+bool UDSPlayerInventoryPDA::IsInventoryFull() {
+	return this->items.Num() == this->maxAmountOfItens;
+}
+
+void UDSPlayerInventoryPDA::AddNewItemToPlayerInventory(UDSItemDataPDA* newItem) {
 	this->items.Push(newItem);
-	return true;
 }
 
 void UDSPlayerInventoryPDA::RemoveItemFromInventory(FString itemId) {
