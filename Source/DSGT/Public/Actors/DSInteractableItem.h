@@ -20,10 +20,17 @@ public:
 	TObjectPtr<class UCameraComponent> staticCamera;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
-	FString itemId;
+	TObjectPtr<class UDSItemDataPDA> itemData;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	FText interactionName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	bool needsItemToPerformInteraction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration", meta=(EditCondition="needsItemToPerformInteraction"))
+	FString itemId;
+	
 	
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
