@@ -43,3 +43,7 @@ void UDSPlayerInventoryPDA::RemoveItemFromInventory(FString itemId) {
 	
 	this->items.Remove(foundItem);
 }
+
+void UDSPlayerInventoryPDA::ClearPlayerInventory() {
+	this->items.Empty();
+}

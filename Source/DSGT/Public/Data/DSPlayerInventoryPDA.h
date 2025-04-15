@@ -29,4 +29,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Inventory Functions")
 	void RemoveItemFromInventory(FString itemId);
+
+	UFUNCTION(BlueprintCallable, CallInEditor, Category="Inventory Functions")
+	void ClearPlayerInventory();
 };
