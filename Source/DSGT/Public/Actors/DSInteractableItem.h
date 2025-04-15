@@ -20,6 +20,9 @@ public:
 	TObjectPtr<class UCameraComponent> staticCamera;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	TObjectPtr<class UDSPlayerInventoryPDA> playerInventory;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	TObjectPtr<class UDSItemDataPDA> itemData;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
@@ -53,4 +56,8 @@ public:
 	void OpenStaticInteractionHUD_Implementation();
 	FString GetItemId_Implementation();
 	class UStaticMesh* GetItemHoldableStaticMesh_Implementation();
+
+protected:
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Component Functions")
+	bool IsPlayerInventoryValid() const;
 };

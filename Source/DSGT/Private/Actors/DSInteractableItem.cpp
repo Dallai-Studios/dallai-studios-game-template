@@ -65,3 +65,7 @@ UStaticMesh* ADSInteractableItem::GetItemHoldableStaticMesh_Implementation() {
 	return this->staticMesh->GetStaticMesh().Get();
 }
 
+bool ADSInteractableItem::IsPlayerInventoryValid() const {
+	return this->playerInventory != NULL;
+}
+
