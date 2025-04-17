@@ -11,18 +11,15 @@ class DSGT_API UDSPlayerInventoryPDA : public UPrimaryDataAsset {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Inventory Configuration")
-	int maxAmountOfItens = 2;
-	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Items On Inventory")
 	TArray<class UDSItemDataPDA*> items;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Configuration")
+	TSubclassOf<class USoundBase> pickUpSound;
+	
 public:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Inventory Functions")
 	bool PlayerHasItem(FString itemId) const;
-
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Inventory Functions")
-	bool IsInventoryFull();
 	
 	UFUNCTION(BlueprintCallable, Category="Inventory Functions")
 	void AddNewItemToPlayerInventory(UDSItemDataPDA* newItem);
