@@ -1,8 +1,6 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
-
 #include "Data/DSPlayerInventoryPDA.h"
-
 #include "Data/DSItemDataPDA.h"
 #include "Tools/DSDebugTools.h"
 
@@ -14,10 +12,6 @@ bool UDSPlayerInventoryPDA::PlayerHasItem(FString itemId) const {
 	}
 	
 	return false;
-}
-
-bool UDSPlayerInventoryPDA::IsInventoryFull() {
-	return this->items.Num() == this->maxAmountOfItens;
 }
 
 void UDSPlayerInventoryPDA::AddNewItemToPlayerInventory(UDSItemDataPDA* newItem) {
