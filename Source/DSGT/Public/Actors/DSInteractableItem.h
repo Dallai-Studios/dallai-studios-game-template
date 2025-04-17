@@ -19,6 +19,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Components")
 	TObjectPtr<class UCameraComponent> staticCamera;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Cofiguration")
+	bool needsToValidateBeforeSpawn = false;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	TObjectPtr<class UDSPlayerInventoryPDA> playerInventory;
 	
@@ -33,8 +36,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration", meta=(EditCondition="needsItemToPerformInteraction"))
 	FString itemId;
-	
-	
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	EDSInteractionType interactionType;

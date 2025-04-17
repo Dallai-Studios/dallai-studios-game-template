@@ -12,6 +12,10 @@ UCLASS()
 class UDSGameGlobalEvents : public UPrimaryDataAsset {
 	GENERATED_BODY()
 
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Game Global Items")
+	TMap<FString, bool> gameKeyItemsAlreadyPicked;
+	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category="Game Global Data")
 	bool bIsGamePaused = false;
@@ -32,4 +36,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void UnpauseGame();
+
+	UFUNCTION(BlueprintCallable)
+	bool ItemAlreadyPicked(FString itemId) const;
 };
