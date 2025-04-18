@@ -23,7 +23,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Gameplay Options")
 	bool bInvertMouseY = false;
 	
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Gameplay Options")
+	bool bCameraHeadbob = false;
 	
 	// ==============================================================
 	// Audio Settings:
@@ -36,8 +37,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Audio Options")
 	float sfxVolume = 1;
-
-
 	
 	// ==============================================================
 	// Video Settings:
@@ -86,8 +85,6 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Video Options")
 	int viewDistanceQuality = 2;
-
-
 	
 	// ==============================================================
 	// Aux Data:
@@ -104,8 +101,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Aux Data")
 	int framerateSelectedIndex = 0;
 
-
-	
 public:
 	// ==============================================================
 	// Helper Functions:

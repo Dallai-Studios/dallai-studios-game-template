@@ -8,6 +8,7 @@ void UDSGameClientOptionsPDA::ResetClientOptions() {
 	this->mouseSensitivity = 1;
 	this->bInvertMouseX = false;
 	this->bInvertMouseY = false;
+	this->bCameraHeadbob = true;
 	
 	this->masterVolume = 1;
 	this->musicVolume = 1;

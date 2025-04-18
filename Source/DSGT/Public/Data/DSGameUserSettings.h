@@ -23,8 +23,9 @@ protected:
 	UPROPERTY(Config)
 	bool bInvertMouseY = false;
 
-
-
+	UPROPERTY(Config)
+	bool bCameraHeadbob = false;
+	
 	// ==============================================================
 	// Audio Settings:
 	// ==============================================================
@@ -36,8 +37,6 @@ protected:
 
 	UPROPERTY(Config)
 	float sfxVolume = 1;
-
-	
 
 public:
 	// ==============================================================
@@ -61,7 +60,11 @@ public:
 	UFUNCTION(BlueprintCallable, Category="DS Game User Settings")
 	void SetInvertMouseAxisY(bool value);	
 
+	UFUNCTION(BlueprintCallable, Category="DS Game User Settings")
+	bool GetCameraHeadbob();
 
+	UFUNCTION(BlueprintCallable, Category="DS Game User Settings")
+	void SetCameraHeadbob();
 	
 	// ==============================================================
 	// Audio Getters and Setters:

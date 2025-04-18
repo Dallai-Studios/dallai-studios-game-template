@@ -80,6 +80,7 @@ void UDSDefaultGameInstance::LoadGameClientOptions() {
 	this->gameClientOptions->mouseSensitivity = gameSettings->GetMouseSensitivity();
 	this->gameClientOptions->bInvertMouseX = gameSettings->GetInvertMouseAxisX();
 	this->gameClientOptions->bInvertMouseY = gameSettings->GetInvertMouseAxisY();
+	this->gameClientOptions
 
 	// load the audio settings
 	this->gameClientOptions->masterVolume = gameSettings->GetMasterVolume();
