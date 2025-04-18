@@ -3,10 +3,10 @@
 #include "GameInstance/DSDefaultGameInstance.h"
 #include "Data/DSGameClientOptionsPDA.h"
 #include "Data/DSGameUserSettings.h"
+#include "Data/DSPlayerInventoryPDA.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tools/DSDebugTools.h"
-
 
 // ==============================================================
 // Life Cycle:
@@ -15,8 +15,6 @@ void UDSDefaultGameInstance::Init() {
 	Super::Init();
 	this->LoadGameClientOptions();
 }
-
-
 
 // ==============================================================
 // Save and Load Game:
@@ -141,8 +139,6 @@ void UDSDefaultGameInstance::UpdateClientSoundOptions() {
 	UGameplayStatics::SetBaseSoundMix(this->GetWorld(), this->mainSoundMixer);
 }
 
-
-
 // ==============================================================
 // Helper Functions:
 // ==============================================================
@@ -151,4 +147,20 @@ EWindowMode::Type UDSDefaultGameInstance::ConvertWindowMode(int windowModeValue)
 	if (windowModeValue == 1) return EWindowMode::Type::WindowedFullscreen;
 	if (windowModeValue == 2) return EWindowMode::Type::Windowed;
 	return EWindowMode::Type::Fullscreen;
+}
+
+void UDSDefaultGameInstance::GiveItem(FString itemId) {
+	if (!this->playerInventory) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Player Inventory is not defined on game instance"), FColor::Red);
+		return;
+	}
+	this->playerInventory->AddNewItemToPlayerInventory(itemId);
+}
+
+void UDSDefaultGameInstance::ClearInventory() {
+	if (!this->playerInventory) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Player Inventory is not defined on game instance"), FColor::Red);
+		return;
+	}
+	this->playerInventory->ClearPlayerInventory();
 }

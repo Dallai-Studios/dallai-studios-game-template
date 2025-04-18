@@ -17,6 +17,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
 	TObjectPtr<class UDSGameClientOptionsPDA> gameClientOptions;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Player Inventory")
+	TObjectPtr<class UDSPlayerInventoryPDA> playerInventory;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Global Events")
+	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
 	TObjectPtr<class USoundMix> mainSoundMixer;
 
@@ -35,8 +41,6 @@ public:
 	// ==============================================================
 	virtual void Init() override;
 	
-
-	
 	// ==============================================================
 	// Save and Load Game:
 	// ==============================================================
@@ -48,11 +52,15 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Game Client Options")
 	void UpdateClientSoundOptions();
-
-
 	
 	// ==============================================================
 	// Helper Functions:
 	// ==============================================================
 	EWindowMode::Type ConvertWindowMode(int windowModeValue);
+
+	UFUNCTION(Exec, Category="Console Command")
+	void GiveItem(FString itemId);
+
+	UFUNCTION(Exec, Category="Console Command")
+	void ClearInventory();
 };
