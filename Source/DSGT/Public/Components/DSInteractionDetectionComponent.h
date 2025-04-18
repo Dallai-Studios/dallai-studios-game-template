@@ -14,17 +14,20 @@ protected:
 	// =====================================================
 	// Interaction Config
 	// =====================================================
-	UPROPERTY(EditAnywhere, Category="Interacation Config")
+	UPROPERTY(EditAnywhere, Category="Interaction Config")
 	TSubclassOf<class UUserWidget> interactionHudReference;
 
-	UPROPERTY(BlueprintReadOnly, Category="Interaction Configuration")
+	UPROPERTY(BlueprintReadOnly, Category="Interaction Config")
 	class UDSBaseInteractionHUD* interactionHudInstance;
 	
-	UPROPERTY(BlueprintReadOnly, Category="Interaction Configuration")
+	UPROPERTY(BlueprintReadOnly, Category="Interaction Config")
 	bool isLookingForInteractable = false;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Interaction Config")
 	float detectionLineSize = 200;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Interaction Config")
+	TObjectPtr<class USoundBase> interactionSound;
 	
 	// =====================================================
 	// Owner Data
@@ -60,4 +63,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Component Methods")
 	void HideInteractableHud();
+
+	UFUNCTION(BlueprintCallable, Category="Component Methods")
+	void PlayInteractionSound();
 };

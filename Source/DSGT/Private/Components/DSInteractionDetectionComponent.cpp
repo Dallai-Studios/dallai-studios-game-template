@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
 #include "Components/DSInteractionDetectionComponent.h"
-
 #include "Actors/DSInteractableItem.h"
 #include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
 #include "HUD/DSBaseInteractionHUD.h"
 #include "Interfaces/DSInteractableItemInterface.h"
+#include "Kismet/GameplayStatics.h"
 #include "Tools/DSDebugTools.h"
 
 // =====================================================
@@ -101,4 +101,15 @@ void UDSInteractionDetectionComponent::ShowInteractableHud(FText interactionText
 void UDSInteractionDetectionComponent::HideInteractableHud() {
 	if (this->interactionHudInstance == NULL || this->interactionHudInstance->GetVisibility() == ESlateVisibility::Collapsed) return;
 	this->interactionHudInstance->SetVisibility(ESlateVisibility::Collapsed);
+}
+
+void UDSInteractionDetectionComponent::PlayInteractionSound() {
+	// Maybe this is not the right place to play this sound, but is better to centralize all the pick up item interactions
+	// sounds on the same place. This will be called in a single blueprint, most probably on the player bp. -Renan
+	if (!this->interactionSound) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Interaction sound is not defined on the component"), FColor::Red);
+		return;
+	}
+
+	UGameplayStatics::PlaySound2D(this->GetWorld(), this->interactionSound);
 }

@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
+
 #include "Data/DSGameUserSettings.h"
-
-
 
 // ==============================================================
 // Gameplay Getters and Setters:
@@ -30,7 +29,13 @@ void UDSGameUserSettings::SetInvertMouseAxisY(bool value) {
 	this->bInvertMouseY = value;	
 }
 
+bool UDSGameUserSettings::GetCameraHeadbob() {
+	return this->bCameraHeadbob;
+}
 
+void UDSGameUserSettings::SetCameraHeadbob(bool value) {
+	this->bCameraHeadbob = value;
+}
 
 // ==============================================================
 // Audio Getters and Setters:

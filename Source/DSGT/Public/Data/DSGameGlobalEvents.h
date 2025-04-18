@@ -7,6 +7,7 @@
 #include "DSGameGlobalEvents.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGlobalEvent);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGlobalEventOneParam, FString, itemId);
 
 UCLASS()
 class UDSGameGlobalEvents : public UPrimaryDataAsset {
@@ -26,6 +27,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category="Game Global Events")
 	FGlobalEvent OnCloseOptionsMenu;
+
+	UPROPERTY(BlueprintAssignable, Category="Game Global Events")
+	FGlobalEventOneParam OnPickUpItem;
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)

@@ -23,13 +23,10 @@ public:
 	bool needsToValidateBeforeSpawn = false;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
-	TObjectPtr<class UDSPlayerInventoryPDA> playerInventory;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
-	TObjectPtr<class UDSItemDataPDA> itemData;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	FText interactionName;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	TObjectPtr<class UDSPlayerInventoryPDA> playerInventory;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	bool needsItemToPerformInteraction;
