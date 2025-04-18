@@ -16,10 +16,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Item Info")
 	FText itemName;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Item Info")
-	TObjectPtr<class UTexture2D> itemImage;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Item Info")
-	TObjectPtr<class UStaticMesh> itemMesh;
 };
