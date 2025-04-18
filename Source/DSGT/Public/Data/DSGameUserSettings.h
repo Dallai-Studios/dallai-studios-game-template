@@ -64,7 +64,7 @@ public:
 	bool GetCameraHeadbob();
 
 	UFUNCTION(BlueprintCallable, Category="DS Game User Settings")
-	void SetCameraHeadbob();
+	void SetCameraHeadbob(bool value);
 	
 	// ==============================================================
 	// Audio Getters and Setters:

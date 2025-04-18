@@ -15,7 +15,7 @@ public:
 	// Gameplay Settings:
 	// ==============================================================
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Gameplay Options")
-	float mouseSensitivity = 1;
+	float mouseSensitivity = 1; //mouse sensitivity is defined between 0.1 and 2
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Gameplay Options")
 	bool bInvertMouseX = false;
@@ -24,7 +24,7 @@ public:
 	bool bInvertMouseY = false;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Gameplay Options")
-	bool bCameraHeadbob = false;
+	bool bCameraHeadbob = false; // the camera headbob is the movement of idle, walk and run. This option is defined for people with motion sickness
 	
 	// ==============================================================
 	// Audio Settings:
