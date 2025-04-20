@@ -66,6 +66,7 @@ void UDSGamePauseComponent::OpenPauseMenu() {
 
 	if (this->gameGlobalEvents != NULL) {
 		this->gameGlobalEvents->PauseGame();
+		this->gameGlobalEvents->OnOpenOptionsMenu.Broadcast();
 	}
 }
 
@@ -87,6 +88,7 @@ void UDSGamePauseComponent::ClosePauseMenu() {
 
 	if (this->gameGlobalEvents) {
 		this->gameGlobalEvents->UnpauseGame();
+		this->gameGlobalEvents->OnCloseOptionsMenu.Broadcast();
 	}
 }
 
