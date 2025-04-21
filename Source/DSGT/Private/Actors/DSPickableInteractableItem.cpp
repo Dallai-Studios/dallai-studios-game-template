@@ -35,7 +35,7 @@ void ADSPickableInteractableItem::PerformInteraction_Implementation(AActor* inst
 	}
 
 	this->gameGlobalEvents->AddItemToPlayerInventory(this->itemId);
-
+	
 	this->gameGlobalEvents->OnPickUpItem.Broadcast(this->itemName);
 	
 	if (this->Destroy()) {
