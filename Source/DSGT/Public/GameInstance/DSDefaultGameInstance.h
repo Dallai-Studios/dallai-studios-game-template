@@ -17,9 +17,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Data")
 	TObjectPtr<class UDSGameClientOptionsPDA> gameClientOptions;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Player Inventory")
-	TObjectPtr<class UDSPlayerInventoryPDA> playerInventory;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Game Global Events")
 	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
 	

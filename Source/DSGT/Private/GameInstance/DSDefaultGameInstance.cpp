@@ -2,8 +2,8 @@
 
 #include "GameInstance/DSDefaultGameInstance.h"
 #include "Data/DSGameClientOptionsPDA.h"
+#include "Data/DSGameGlobalEvents.h"
 #include "Data/DSGameUserSettings.h"
-#include "Data/DSPlayerInventoryPDA.h"
 #include "GameFramework/GameUserSettings.h"
 #include "Kismet/GameplayStatics.h"
 #include "Tools/DSDebugTools.h"
@@ -152,17 +152,17 @@ EWindowMode::Type UDSDefaultGameInstance::ConvertWindowMode(int windowModeValue)
 }
 
 void UDSDefaultGameInstance::GiveItem(FString itemId) {
-	if (!this->playerInventory) {
+	if (!this->gameGlobalEvents) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Player Inventory is not defined on game instance"), FColor::Red);
 		return;
 	}
-	this->playerInventory->AddNewItemToPlayerInventory(itemId);
+	this->gameGlobalEvents->AddItemToPlayerInventory(itemId);
 }
 
 void UDSDefaultGameInstance::ClearInventory() {
-	if (!this->playerInventory) {
+	if (!this->gameGlobalEvents) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Player Inventory is not defined on game instance"), FColor::Red);
 		return;
 	}
-	this->playerInventory->ClearPlayerInventory();
+	this->gameGlobalEvents->ClearPlayerInventory();
 }

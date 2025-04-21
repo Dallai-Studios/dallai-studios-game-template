@@ -16,6 +16,9 @@ private:
 	// Component Configuration
 	// ==================================================
 	UPROPERTY(EditAnywhere, Category="Component Configuration")
+	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
+	
+	UPROPERTY(EditAnywhere, Category="Component Configuration")
 	float floorDetectionLineSize; //define the size of the raycast to detect the floor.
 
 	UPROPERTY(EditAnywhere, Category="Component Configuration")

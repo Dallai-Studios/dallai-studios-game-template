@@ -15,6 +15,16 @@ ADSPickableInteractableItem::ADSPickableInteractableItem() {
 
 void ADSPickableInteractableItem::BeginPlay() {
 	Super::BeginPlay();
+
+	if (!this->gameGlobalEvents) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Game Global Events is not defined for the interactable item"), FColor::Red);
+		return;
+	}
+
+	if (this->gameGlobalEvents->ItemAlreadyPicked(this->itemId)) {
+		this->Destroy();
+		UDSDebugTools::ShowDebugMessage(TEXT("Player already have this item. Skipping it"), FColor::Blue);
+	}
 }
 
 FText ADSPickableInteractableItem::GetInteractionVerb_Implementation() {

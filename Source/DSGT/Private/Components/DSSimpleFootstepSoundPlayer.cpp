@@ -1,7 +1,10 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
 #include "Components/DSSimpleFootstepSoundPlayer.h"
+
+#include "Data/DSGameGlobalEvents.h"
 #include "Kismet/GameplayStatics.h"
+#include "Tools/DSDebugTools.h"
 
 UDSSimpleFootstepSoundPlayer::UDSSimpleFootstepSoundPlayer() {
 	PrimaryComponentTick.bCanEverTick = false;
@@ -9,6 +12,10 @@ UDSSimpleFootstepSoundPlayer::UDSSimpleFootstepSoundPlayer() {
 
 void UDSSimpleFootstepSoundPlayer::BeginPlay() {
 	Super::BeginPlay();
+
+	if (!this->gameGlobalEvents) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Game Global Events not define on the simple footstep sound player"), FColor::Red);
+	}
 }
 
 void UDSSimpleFootstepSoundPlayer::PlayWalkFootstepSound() {
@@ -45,6 +52,8 @@ void UDSSimpleFootstepSoundPlayer::StopAllFootstepSounds() {
 }
 
 void UDSSimpleFootstepSoundPlayer::DetectAndPlayWalkSoundBasedOnSurface() {
+	if (this->gameGlobalEvents && this->gameGlobalEvents->IsGamePaused()) return;
+	
 	FHitResult hitResult;
 	auto startLocation = this->GetOwner()->GetActorLocation();
 	auto endLocation = startLocation + ((this->GetOwner()->GetActorUpVector() * -1) * this->floorDetectionLineSize) ;
@@ -63,21 +72,23 @@ void UDSSimpleFootstepSoundPlayer::DetectAndPlayWalkSoundBasedOnSurface() {
 }
 
 void UDSSimpleFootstepSoundPlayer::DetectAndPlayRunningSoundBasedOnSurface() {
-	FHitResult hitResult;
-    	auto startLocation = this->GetOwner()->GetActorLocation();
-    	auto endLocation = startLocation + ((this->GetOwner()->GetActorUpVector() * -1) * this->floorDetectionLineSize);
-    	FCollisionQueryParams params;
-		params.bReturnPhysicalMaterial = true;
-    	FCollisionResponseParams responseParams;
-    
-    	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, params, responseParams);
-
-		DrawDebugLine(this->GetWorld(), startLocation, endLocation, hit ? FColor::Green : FColor::Red, false, 10);
+	if (this->gameGlobalEvents && this->gameGlobalEvents->IsGamePaused()) return;
 	
-    	if (hit) {
-    		UPhysicalMaterial* physMaterial = hitResult.PhysMaterial.Get();
-    		if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, true, hitResult.Location);
-    	}
+	FHitResult hitResult;
+    auto startLocation = this->GetOwner()->GetActorLocation();
+    auto endLocation = startLocation + ((this->GetOwner()->GetActorUpVector() * -1) * this->floorDetectionLineSize);
+    FCollisionQueryParams params;
+	params.bReturnPhysicalMaterial = true;
+    FCollisionResponseParams responseParams;
+
+    bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, params, responseParams);
+
+	DrawDebugLine(this->GetWorld(), startLocation, endLocation, hit ? FColor::Green : FColor::Red, false, 10);
+
+    if (hit) {
+    	UPhysicalMaterial* physMaterial = hitResult.PhysMaterial.Get();
+    	if (physMaterial) this->PlayFootstepSound(physMaterial->SurfaceType, true, hitResult.Location);
+    }
 }
 
 void UDSSimpleFootstepSoundPlayer::PlayFootstepSound(EPhysicalSurface surface, bool characterIsRunning, FVector location) {
