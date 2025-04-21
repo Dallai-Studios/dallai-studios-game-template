@@ -47,6 +47,6 @@ public:
 	UFUNCTION(BlueprintCallable, CallInEditor)
 	void ClearPlayerInventory();
 	
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool ItemAlreadyPicked(FString itemId) const;
 };
