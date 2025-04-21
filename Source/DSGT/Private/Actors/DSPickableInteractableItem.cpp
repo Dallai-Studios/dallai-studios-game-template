@@ -7,6 +7,9 @@
 
 ADSPickableInteractableItem::ADSPickableInteractableItem() {
 	PrimaryActorTick.bCanEverTick = false;
+
+	this->pickableMesh = this->CreateDefaultSubobject<UStaticMeshComponent>("Pickable Item Mesh");
+	this->pickableMesh->SetupAttachment(this->GetRootComponent());
 }
 
 void ADSPickableInteractableItem::BeginPlay() {

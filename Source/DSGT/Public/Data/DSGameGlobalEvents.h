@@ -15,7 +15,7 @@ class UDSGameGlobalEvents : public UPrimaryDataAsset {
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Game Global Items")
-	TMap<FString, bool> gameKeyItemsAlreadyPicked;
+	TMap<FString, bool> playerInventory;
 	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category="Game Global Data")
@@ -41,6 +41,12 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UnpauseGame();
 
+	UFUNCTION(BlueprintCallable)
+	void AddItemToPlayerInventory(FString itemId);
+
+	UFUNCTION(BlueprintCallable, CallInEditor)
+	void ClearPlayerInventory();
+	
 	UFUNCTION(BlueprintCallable)
 	bool ItemAlreadyPicked(FString itemId) const;
 };

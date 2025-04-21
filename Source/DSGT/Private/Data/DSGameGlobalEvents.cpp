@@ -16,13 +16,39 @@ void UDSGameGlobalEvents::UnpauseGame() {
 	this->bIsGamePaused = false;
 }
 
+void UDSGameGlobalEvents::AddItemToPlayerInventory(FString itemId) {
+	if (this->playerInventory.Num() == 0) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Global key items has no elements"), FColor::Red);
+		return;
+	}
+
+	bool* value = this->playerInventory.Find(itemId);
+	if (value == NULL) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Item not found on player inventory"), FColor::Red);
+		return;
+	}
+
+	if (*value) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Item already picked by the player"), FColor::Red);
+		return;
+	}
+
+	*value = true;
+}
+
+void UDSGameGlobalEvents::ClearPlayerInventory() {
+	for (auto item : this->playerInventory) {
+		item.Value = false;
+	}
+}
+
 bool UDSGameGlobalEvents::ItemAlreadyPicked(FString itemId) const {
-	if (this->gameKeyItemsAlreadyPicked.Num() == 0) {
+	if (this->playerInventory.Num() == 0) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Global key items has no elements"), FColor::Red);
 		return false;
 	}
 	
-	const bool* value = this->gameKeyItemsAlreadyPicked.Find(itemId);
+	const bool* value = this->playerInventory.Find(itemId);
 	if (value == NULL) return false;
 	return *value;
 }
