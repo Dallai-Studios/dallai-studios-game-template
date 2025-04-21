@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2025 Dallai Studios. All Rights Reserved.
 
 #include "Components/DSInteractionDetectionComponent.h"
-#include "Actors/DSInteractableItem.h"
 #include "Blueprint/UserWidget.h"
 #include "Camera/CameraComponent.h"
 #include "HUD/DSBaseInteractionHUD.h"
