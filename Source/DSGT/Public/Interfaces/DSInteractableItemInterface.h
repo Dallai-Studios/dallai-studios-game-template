@@ -30,7 +30,4 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	FString GetItemId();
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	class UStaticMesh* GetItemHoldableStaticMesh();
 };
