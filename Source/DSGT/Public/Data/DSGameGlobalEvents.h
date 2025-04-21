@@ -7,7 +7,7 @@
 #include "DSGameGlobalEvents.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGlobalEvent);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGlobalEventOneParam, FString, itemId);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGlobalEventOneParam, FText, itemName);
 
 UCLASS()
 class UDSGameGlobalEvents : public UPrimaryDataAsset {

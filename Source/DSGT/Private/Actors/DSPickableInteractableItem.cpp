@@ -3,6 +3,7 @@
 
 #include "Actors/DSPickableInteractableItem.h"
 
+#include "Data/DSGameGlobalEvents.h"
 #include "Tools/DSDebugTools.h"
 
 ADSPickableInteractableItem::ADSPickableInteractableItem() {
@@ -26,7 +27,22 @@ EDSInteractionType ADSPickableInteractableItem::GetInteractionType_Implementatio
 
 void ADSPickableInteractableItem::PerformInteraction_Implementation(AActor* instigatorActor) {
 	// Maybe I can put the hole logic here. -Dallai
-	UDSDebugTools::ShowDebugMessage(TEXT("I dont know what to do it this yet"), FColor::Magenta);	
+	UDSDebugTools::ShowDebugMessage(TEXT("I dont know what to do it this yet"), FColor::Magenta);
+
+	if (this->gameGlobalEvents == NULL) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Game Global Events is not defined. Define it first!"), FColor::Red);
+		return;
+	}
+
+	this->gameGlobalEvents->AddItemToPlayerInventory(this->itemId);
+
+	this->gameGlobalEvents->OnPickUpItem.Broadcast(this->itemName);
+	
+	if (this->Destroy()) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Pickable item destroyed"), FColor::Green);
+	} else {
+		UDSDebugTools::ShowDebugMessage(TEXT("Pickable Item cant be destroyed. Maybe is set to be indestroctable"), FColor::Red);
+	}
 }
 
 void ADSPickableInteractableItem::OpenStaticInteractionHUD_Implementation() {

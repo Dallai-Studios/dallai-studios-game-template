@@ -22,7 +22,13 @@ public:
 	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
-	
+	FText interactionVerb;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	bool playerNeedsKey = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration", meta=(EditCondition="playerNeedsKey"))
+	FString keyItemId;
 	
 	
 public:

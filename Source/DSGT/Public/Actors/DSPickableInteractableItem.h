@@ -16,7 +16,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Components")
 	TObjectPtr<class UStaticMeshComponent> pickableMesh;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Components")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
 	FText itemName;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
