@@ -58,6 +58,6 @@ public:
 	UFUNCTION(Exec, Category="Console Command")
 	void GiveItem(FString itemId);
 
-	UFUNCTION(Exec, Category="Console Command")
+	UFUNCTION(Exec, BlueprintCallable, Category="Console Command")
 	void ClearInventory();
 };

@@ -165,4 +165,5 @@ void UDSDefaultGameInstance::ClearInventory() {
 		return;
 	}
 	this->gameGlobalEvents->ClearPlayerInventory();
+	UDSDebugTools::ShowDebugMessage(TEXT("Player Inventory is now cleared!"), FColor::Cyan);
 }

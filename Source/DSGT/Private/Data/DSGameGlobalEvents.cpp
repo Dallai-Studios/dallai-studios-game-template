@@ -37,7 +37,7 @@ void UDSGameGlobalEvents::AddItemToPlayerInventory(FString itemId) {
 }
 
 void UDSGameGlobalEvents::ClearPlayerInventory() {
-	for (auto item : this->playerInventory) {
+	for (auto& item : this->playerInventory) {
 		item.Value = false;
 	}
 }
