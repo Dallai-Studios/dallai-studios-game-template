@@ -7,6 +7,12 @@
 
 ADSInteractableDoor::ADSInteractableDoor() {
 	PrimaryActorTick.bCanEverTick = false;
+
+	this->doorFrameMesh = this->CreateDefaultSubobject<UStaticMeshComponent>("Door Frame Mesh");
+	this->doorFrameMesh->SetupAttachment(this->GetRootComponent());
+
+	this->doorMesh = this->CreateDefaultSubobject<UStaticMeshComponent>("Door Mesh");
+	this->doorMesh->SetupAttachment(this->doorFrameMesh);
 }
 
 void ADSInteractableDoor::BeginPlay() {
