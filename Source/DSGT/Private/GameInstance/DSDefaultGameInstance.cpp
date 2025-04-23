@@ -136,8 +136,8 @@ void UDSDefaultGameInstance::UpdateClientSoundOptions() {
 	}
 	
 	UGameplayStatics::SetSoundMixClassOverride(this->GetWorld(), this->mainSoundMixer, this->masterSoundClass, this->gameClientOptions->masterVolume);
-	UGameplayStatics::SetSoundMixClassOverride(this->GetWorld(), this->mainSoundMixer, this->musicSoundClass, this->gameClientOptions->masterVolume	);
-	UGameplayStatics::SetSoundMixClassOverride(this->GetWorld(), this->mainSoundMixer, this->sfxSoundClass, this->gameClientOptions->masterVolume);
+	UGameplayStatics::SetSoundMixClassOverride(this->GetWorld(), this->mainSoundMixer, this->musicSoundClass, this->gameClientOptions->musicVolume	);
+	UGameplayStatics::SetSoundMixClassOverride(this->GetWorld(), this->mainSoundMixer, this->sfxSoundClass, this->gameClientOptions->sfxVolume);
 	UGameplayStatics::SetBaseSoundMix(this->GetWorld(), this->mainSoundMixer);
 }
 

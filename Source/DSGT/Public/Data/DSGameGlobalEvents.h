@@ -17,6 +17,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Game Global Items")
 	TMap<FString, bool> playerInventory;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Game Global Events")
+	TMap<FString, bool> gameEvents;
+	
 protected:
 	UPROPERTY(BlueprintReadOnly, Category="Game Global Data")
 	bool bIsGamePaused = false;
