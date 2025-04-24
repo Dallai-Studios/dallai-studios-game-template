@@ -21,7 +21,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Actor Configuration")
 	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Actor Configuration")
 	FText interactionVerb;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Actor Configuration")
