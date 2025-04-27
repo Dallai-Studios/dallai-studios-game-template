@@ -11,7 +11,10 @@ class DSGT_API UDSBaseInteractionHUD : public UUserWidget {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintReadOnly, Category="Controls")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Game Global Events")
+	TObjectPtr<class UDSGameGlobalEvents> gameGlobalEvents;
+	
+	UPROPERTY(BlueprintReadWrite, Category="Controls")
 	FText interactionVerbText;
 
 public:

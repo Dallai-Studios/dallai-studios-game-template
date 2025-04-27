@@ -8,6 +8,7 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FGlobalEvent);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FGlobalEventOneParam, FText, itemName);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPlayerTryLockedDoor, FText, newInteractionVerb);
 
 UCLASS()
 class UDSGameGlobalEvents : public UPrimaryDataAsset {
@@ -33,6 +34,9 @@ public:
 
 	UPROPERTY(BlueprintAssignable, Category="Game Global Events")
 	FGlobalEventOneParam OnPickUpItem;
+
+	UPROPERTY(BlueprintAssignable, BlueprintCallable, Category="Game Global Events")
+	FOnPlayerTryLockedDoor OnPlayerTryLockedDoor;
 
 public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)

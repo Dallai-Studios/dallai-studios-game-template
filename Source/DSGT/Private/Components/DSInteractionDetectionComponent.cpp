@@ -62,8 +62,10 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 	
 	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
 
+	// This validation prevents the code bellow to try and check for a interface on null stuff. -Dallai
 	if (!hit) {
 		this->HideInteractableHud();
+		this->cachedInteractableItem = NULL;
 		return;
 	};
 
@@ -74,16 +76,17 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 			UDSDebugTools::ShowDebugMessage(TEXT("Interaction HUD Instance is not defined"));
 			return;
 		}
-		
+
+		// If the interaction HUD is already visible, prevents the rest of the code to run. -Dallai
 		if (this->interactionHudInstance->GetVisibility() == ESlateVisibility::Visible) return;
 
 		this->cachedInteractableItem = hitActor; 
 		FText interactionText = IDSInteractableItemInterface::Execute_GetInteractionVerb(hitActor);
 
+		// TODO: Remove this debug info when the game is ready, or make a logic to only display that when a debug checkbox is active. -Dallai
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, interactionText.ToString());
 		
 		this->ShowInteractableHud(interactionText);
-		
 		return;
 	}
 
@@ -92,19 +95,21 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 }
 
 void UDSInteractionDetectionComponent::ShowInteractableHud(FText interactionText) {
+	// This kind of validation is necessary, even been repetitive. unreal sometimes loses some references for no reason. -Dallai
 	if (this->interactionHudInstance == NULL || this->interactionHudInstance->GetVisibility() == ESlateVisibility::Visible) return;
 	this->interactionHudInstance->SetVisibility(ESlateVisibility::Visible);
 	this->interactionHudInstance->interactionVerbText = interactionText;
 }
 
 void UDSInteractionDetectionComponent::HideInteractableHud() {
+	// This validation is just to be safe. -Dallai
 	if (this->interactionHudInstance == NULL || this->interactionHudInstance->GetVisibility() == ESlateVisibility::Collapsed) return;
 	this->interactionHudInstance->SetVisibility(ESlateVisibility::Collapsed);
 }
 
 void UDSInteractionDetectionComponent::PlayInteractionSound() {
-	// Maybe this is not the right place to play this sound, but is better to centralize all the pick up item interactions
-	// sounds on the same place. This will be called in a single blueprint, most probably on the player bp. -Renan
+	// Maybe this is not the right place to play this sound, but it is better to centralize all the pick up item interactions
+	// sounds on the same place. This will be called in a single blueprint, most probably on the player BP. -Dallai
 	if (!this->interactionSound) {
 		UDSDebugTools::ShowDebugMessage(TEXT("Interaction sound is not defined on the component"), FColor::Red);
 		return;
