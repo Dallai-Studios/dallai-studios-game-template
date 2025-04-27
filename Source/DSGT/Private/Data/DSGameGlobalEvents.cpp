@@ -52,3 +52,9 @@ bool UDSGameGlobalEvents::ItemAlreadyPicked(FString itemId) const {
 	if (value == NULL) return false;
 	return *value;
 }
+
+void UDSGameGlobalEvents::ClearGameTriggers() {
+	for (auto& trigger : this->gameEvents) {
+		trigger.Value = false;
+	}
+}

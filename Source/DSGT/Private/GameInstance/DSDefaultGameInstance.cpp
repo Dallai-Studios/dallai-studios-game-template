@@ -167,3 +167,13 @@ void UDSDefaultGameInstance::ClearInventory() {
 	this->gameGlobalEvents->ClearPlayerInventory();
 	UDSDebugTools::ShowDebugMessage(TEXT("Player Inventory is now cleared!"), FColor::Cyan);
 }
+
+void UDSDefaultGameInstance::ClearTriggers() {
+	if (!this->gameGlobalEvents) {
+		UDSDebugTools::ShowDebugMessage(TEXT("Global Game Events is not defined on game instance"), FColor::Red);
+		return;
+	}
+
+	this->gameGlobalEvents;
+	UDSDebugTools::ShowDebugMessage(TEXT("Game Triggers are now cleared"), FColor::Cyan);
+}

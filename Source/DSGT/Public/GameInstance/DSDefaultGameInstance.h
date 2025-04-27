@@ -60,4 +60,7 @@ public:
 
 	UFUNCTION(Exec, BlueprintCallable, Category="Console Command")
 	void ClearInventory();
+
+	UFUNCTION(Exec, BlueprintCallable, Category="Console Command")
+	void ClearTriggers();
 };

@@ -56,4 +56,7 @@ public:
 	
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	bool ItemAlreadyPicked(FString itemId) const;
+
+	UFUNCTION(BlueprintCallable, CallInEditor)
+	void ClearGameTriggers();
 };
