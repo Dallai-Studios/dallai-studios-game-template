@@ -58,7 +58,7 @@ void UDSInteractionDetectionComponent::CheckForInteractable() {
 	FVector startLocation = this->ownerCamera->GetComponentLocation();
 	FVector endLocation = startLocation + this->ownerCamera->GetForwardVector() * this->detectionLineSize;
 	FCollisionQueryParams queryParams;
-	queryParams.AddIgnoredActor(this->GetOwner());
+	queryParams.AddIgnoredActor(this->GetOwner()); 
 	
 	bool hit = this->GetWorld()->LineTraceSingleByChannel(hitResult, startLocation, endLocation, ECC_Visibility, queryParams);
 
