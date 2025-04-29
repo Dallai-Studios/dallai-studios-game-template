@@ -13,9 +13,9 @@ class DSGT_API UDSDialogueContainerPDA : public UPrimaryDataAsset {
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Dialogue Container")
-	TMap<FString, TArray<FDSDialogueEntry>> dialogueContainer;
+	TMap<FString, FDSDialogueEntry> dialogueContainer;
 
 public:
 	UFUNCTION(BlueprintCallable, Category="Dialogue Container")
-	TArray<FDSDialogueEntry>* GetDialogue(FString dialogueId) const;
+	FDSDialogueEntry GetDialogue(FString dialogueId) const;
 };

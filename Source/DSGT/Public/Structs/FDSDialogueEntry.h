@@ -12,5 +12,5 @@ public:
 	FText characterName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FText dialogueText;
+	TArray<FText> dialogueText;
 };

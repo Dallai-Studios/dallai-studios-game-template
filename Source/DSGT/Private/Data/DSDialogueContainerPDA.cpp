@@ -2,6 +2,7 @@
 
 
 #include "Data/DSDialogueContainerPDA.h"
-TArray<FDSDialogueEntry>* UDSDialogueContainerPDA::GetDialogue(FString dialogueId) const {
-	auto dialogueEntries = this->dialogueContainer.Find(dialogueId);
+FDSDialogueEntry UDSDialogueContainerPDA::GetDialogue(FString dialogueId) const {
+	auto entry = this->dialogueContainer.Find(dialogueId);
+	return *entry;
 }
