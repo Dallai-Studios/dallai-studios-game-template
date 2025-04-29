@@ -13,9 +13,15 @@ class DSGT_API UDSPlayerDialogueComponent : public UActorComponent {
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
 	TObjectPtr<class UDSDialogueContainerPDA> dialogueContainer;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
+	float dialogDuration;
 	
 public:
 	UDSPlayerDialogueComponent();
 	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+	UFUNCTION(BlueprintCallable, Category="Component Functions")
+	void ShowDialogue();
 };
