@@ -3,7 +3,7 @@
 #include "DSDialogueHUD.h"
 
 void UDSDialogueHUD::StartNewDialogue(FText characterNameToDisplay, FString originalDialogueText, float dialogueAnimationInterval) {
-	this->cachedCharacterName = characterNameToDisplay;
+	this->currentCharacterName = characterNameToDisplay;
 	this->dialogueStringText = "";
 	this->dialogueFullStringText = originalDialogueText;
 	this->currentTextIndex = 0;
