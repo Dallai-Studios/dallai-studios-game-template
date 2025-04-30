@@ -19,6 +19,7 @@ void UDSPlayerDialogueComponent::BeginPlay() {
 	}
 	
 	this->dialogueHudInstance = Cast<UDSDialogueHUD>(CreateWidget(this->dialogueHudReference));
+	
 	if (dialogueHudInstance) {
 		this->dialogueHudInstance->AddToViewport();
 		this->dialogueHudInstance->SetVisibility(ESlateVisibility::Collapsed);
