@@ -3,6 +3,7 @@
 #include "DSDialogueHUD.h"
 
 void UDSDialogueHUD::StartNewDialogue(FText characterName, FString& dialogueText, float dialogueAnimationInterval) {
+	this->cachedCharacterName = characterName;
 	this->dialogueStringText = "";
 	this->dialogueFullStringText = dialogueFullStringText;
 	this->currentTextIndex = 0;
@@ -26,3 +27,4 @@ void UDSDialogueHUD::UpdateDialogueText() {
 		this->GetWorld()->GetTimerManager().ClearTimer(this->dialogueTypingHandle);
 	}
 }
+

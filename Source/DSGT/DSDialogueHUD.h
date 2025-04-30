@@ -14,7 +14,7 @@ class DSGT_API UDSDialogueHUD : public UUserWidget {
 
 public:
 	UPROPERTY(BlueprintReadOnly, Category="HUD Data")
-	FText characterName; // I can use this to create bind events to get the character name on the HUD itself
+	FText cachedCharacterName; // I can use this to create bind events to get the character name on the HUD itself
 
 	UPROPERTY(BlueprintReadOnly, Category="HUD Data")
 	FText finalDialogueText; // also for this value here

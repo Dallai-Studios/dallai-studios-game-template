@@ -12,10 +12,14 @@ class DSGT_API UDSPlayerDialogueComponent : public UActorComponent {
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
+	TObjectPtr<class UUserWidget> dialogueHudReference;
+	class UDSDialogueHUD* dialogueHudInstance;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
 	TObjectPtr<class UDSDialogueContainerPDA> dialogueContainer;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
-	float dialogDuration;
+	float dialogueAnimationInterval;
 	
 public:
 	UDSPlayerDialogueComponent();
@@ -23,5 +27,5 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintCallable, Category="Component Functions")
-	void ShowDialogue();
+	void ShowDialogue(FString& dialogueId);
 };
