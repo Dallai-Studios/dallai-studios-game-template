@@ -29,5 +29,8 @@ public:
 	void OpenStaticInteractionHUD();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	class UDSDialogueContainerPDA* GetDialogueContainer();
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	FString GetItemId();
 };

@@ -16,10 +16,12 @@ public:
 	class UDSDialogueHUD* dialogueHudInstance;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
-	TObjectPtr<class UDSDialogueContainerPDA> dialogueContainer;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Component Configuration")
 	float dialogueAnimationInterval;
+
+private:
+	class UDSDialogueContainerPDA* dialogueContainer;
+	bool hasActiveDialogue;
+	int32 currentDialogueEntryIndex;
 	
 public:
 	UDSPlayerDialogueComponent();
@@ -27,5 +29,8 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UFUNCTION(BlueprintCallable, Category="Component Functions")
-	void ShowDialogue(FString& dialogueId);
+	void ShowDialogue(UDSDialogueContainerPDA* dialogueContainer);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category="Component Functions")
+	bool HasActiveDialogue() const;
 };

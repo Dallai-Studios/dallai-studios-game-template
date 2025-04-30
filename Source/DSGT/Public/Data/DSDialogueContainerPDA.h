@@ -12,8 +12,8 @@ class DSGT_API UDSDialogueContainerPDA : public UPrimaryDataAsset {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Dialogue Container")
-	TMap<FString, FDSDialogueEntry> dialogueContainer;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Dialogue Messages")
+	TArray<FDSDialogueEntry> dialogueEntries;
 
 public:
 	UFUNCTION(BlueprintCallable, Category="Dialogue Container")

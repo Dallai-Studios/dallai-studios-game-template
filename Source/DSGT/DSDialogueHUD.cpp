@@ -2,16 +2,16 @@
 
 #include "DSDialogueHUD.h"
 
-void UDSDialogueHUD::StartNewDialogue(FText characterName, FString& dialogueText, float dialogueAnimationInterval) {
-	this->cachedCharacterName = characterName;
+void UDSDialogueHUD::StartNewDialogue(FText characterNameToDisplay, FString originalDialogueText, float dialogueAnimationInterval) {
+	this->cachedCharacterName = characterNameToDisplay;
 	this->dialogueStringText = "";
-	this->dialogueFullStringText = dialogueFullStringText;
+	this->dialogueFullStringText = originalDialogueText;
 	this->currentTextIndex = 0;
 
-	this->GetWorld()->GetTimerManager().ClearTimer(this->dialogueTypingHandle);
+	this->GetWorld()->GetTimerManager().ClearTimer(this->dialogueAnimationTimeHandle);
 
 	this->GetWorld()->GetTimerManager().SetTimer(
-		this->dialogueTypingHandle,
+		this->dialogueAnimationTimeHandle,
 		this,
 		&UDSDialogueHUD::UpdateDialogueText,
 		dialogueAnimationInterval,
@@ -23,8 +23,9 @@ void UDSDialogueHUD::UpdateDialogueText() {
 	if (this->currentTextIndex < this->dialogueFullStringText.Len()) {
 		this->dialogueStringText += this->dialogueFullStringText[currentTextIndex++];
 		this->finalDialogueText = FText::FromString(this->dialogueStringText);
-	} else {
-		this->GetWorld()->GetTimerManager().ClearTimer(this->dialogueTypingHandle);
-	}
+		return;
+	} 
+
+	this->GetWorld()->GetTimerManager().ClearTimer(this->dialogueAnimationTimeHandle);
 }
 
